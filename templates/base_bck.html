@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} Document {% endblock title %}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Chilanka&family=Montserrat:ital@1&display=swap" rel="stylesheet" />
+    <style>
+        /* CSS Style order in element
+            <element specific class>
+            width100
+            min-height100
+            height100
+            overflow-hidden
+            overflow-y-auto
+            display-flex
+            display-flex-center
+            display-flex-column
+            display-flex-hr
+            padding10
+            margin-a
+            font-size-2
+            font-worksans
+            font-weight-medium
+            text-color-a
+            background-color-a
+            border-radius-b
+            soft-ui-outer-shadow
+            button-a
+            no-select
+        */
+        /* CSS percent to hexadecimal conversion
+            Opacity %   255 Step        2 digit HEX prefix
+            0%          0.00            00
+            5%          12.75           0C
+            10%         25.50           19
+            15%         38.25           26
+            20%         51.00           33
+            25%         63.75           3F
+            30%         76.50           4C
+            35%         89.25           59
+            40%         102.00          66
+            45%         114.75          72
+            50%         127.50          7F
+            55%         140.25          8C
+            60%         153.00          99
+            65%         165.75          A5
+            70%         178.50          B2
+            75%         191.25          BF
+            80%         204.00          CC
+            85%         216.75          D8
+            90%         229.50          E5
+            95%         242.25          F2
+            100%        255.00          FF
+        */
+        
+         :root {
+            --color-primary-a: #02a9ea;
+            --color-primary-b: #208dda;
+            --color-primary-c: #0075a2;
+            --color-secondary-a: #916aff;
+            --color-secondary-b: #8dabff;
+            --color-tertiary-a: #fa446a;
+            /*  */
+            --color-black-a: #2e2e2e;
+            --color-gray-a: #ebebeb;
+            --color-white-a: #f4f2f2;
+            /*  */
+            --color-primary-a-op-90: #02a9eae5;
+            --color-primary-b-op-90: #208ddae5;
+            --color-primary-c-op-90: #0075a2e5;
+            --color-gray-a-op-90: #ebebebe5;
+            --color-secondary-a-op-30: #916aff4c;
+            --color-secondary-a-op-20: #916aff33;
+            --color-secondary-b-op-40: #8dabff66;
+            --color-secondary-b-op-30: #8dabff4c;
+            --color-secondary-b-op-15: #8dabff26;
+            --color-tertiary-a-op-30: #fa446a4c;
+            --color-tertiary-a-op-20: #fa446a33;
+            /*  */
+            --text-color-a: var(--color-black-a);
+            --text-color-b: var(--color-white-a);
+            --text-color-c: var(--color-secondary-a);
+            /*  */
+            --background-color-a: var(--color-white-a);
+            --background-color-b: var(--color-primary-a-op-90);
+            --background-color-c: var(--color-primary-b-op-90);
+            --background-color-d: var(--color-primary-c-op-90);
+            --background-color-e: var(--color-gray-a-op-90);
+            --background-color-f: var(--color-secondary-a-op-30);
+            --background-color-g: var(--color-secondary-a-op-20);
+            --background-color-h: var(--color-secondary-b-op-40);
+            --background-color-i: var(--color-secondary-b-op-30);
+            --background-color-j: var(--color-secondary-b-op-15);
+            --background-color-k: var(--color-tertiary-a-op-30);
+            --background-color-l: var(--color-tertiary-a-op-20);
+            --background-color-m: var(--color-secondary-a);
+            --background-color-n: var(--color-black-a);
+            /*  */
+            --unit-a: calc(1rem + 0.5vw);
+        }
+        
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        
+        button {
+            background: none;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        button {
+            border: transparent;
+            outline: none;
+            box-shadow: none;
+        }
+        
+        .font-caveat {
+            font-family: 'Caveat', cursive;
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        .font-chilanka {
+            font-family: 'Chilanka', cursive;
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .font-montserrat-italic {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .overflow-hidden {
+            overflow: hidden;
+        }
+        
+        .overflow-y-auto {
+            overflow-y: auto;
+        }
+        
+        .width100vw-height100vh {
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .width100 {
+            width: 100%;
+        }
+        
+        .width80 {
+            width: 80%;
+        }
+        
+        .width-max-content {
+            width: max-content;
+        }
+        
+        .min-height100 {
+            min-height: 100%;
+        }
+        
+        .height100 {
+            height: 100%;
+        }
+        
+        .display-flex {
+            display: flex;
+        }
+        
+        .display-flex-center {
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .display-flex-column {
+            flex-flow: column;
+        }
+        
+        .display-flex-hr {
+            justify-content: space-evenly;
+        }
+        
+        .display-flex-hr-ends {
+            justify-content: space-between;
+        }
+        
+        .display-flex-hr-around {
+            justify-content: space-around;
+        }
+        
+        .position-relative {
+            position: relative;
+        }
+        
+        .position-fixed {
+            position: fixed;
+        }
+        
+        .position-sticky {
+            position: sticky;
+        }
+        
+        .position-absolute {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .position-center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .padding5 {
+            padding: 5%;
+        }
+        
+        .padding10 {
+            padding: 10%;
+        }
+        
+        .padding-a {
+            padding: calc(var(--unit-a) * 0.6) calc(var(--unit-a) * 1.5);
+        }
+        
+        .margin-a {
+            margin-bottom: calc(var(--unit-a));
+        }
+        
+        .margin-b {
+            margin: calc(var(--unit-a) * 0.4) calc(var(--unit-a) * 0.2);
+        }
+        
+        .font-size-1 {
+            font-size: calc(var(--unit-a) * 3.4);
+        }
+        
+        .font-size-2 {
+            font-size: calc(var(--unit-a) * 2);
+        }
+        
+        .font-size-3 {
+            font-size: calc(var(--unit-a) * 1);
+        }
+        
+        .font-size-4 {
+            font-size: calc(var(--unit-a) * 0.8);
+        }
+        
+        .font-size-5 {
+            font-size: calc(var(--unit-a) * 0.6);
+        }
+        
+        .font-weight-light {
+            font-weight: 300;
+        }
+        
+        .font-weight-medium {
+            font-weight: 300;
+        }
+        
+        .font-weight-heavy {
+            font-weight: 300;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-color-a {
+            color: var(--text-color-a);
+        }
+        
+        .text-color-b {
+            color: var(--text-color-b);
+        }
+        
+        .text-color-c {
+            color: var(--text-color-c);
+        }
+        
+        .background-color-a {
+            background-color: var(--background-color-a);
+        }
+        
+        .background-color-b {
+            background-color: var(--background-color-b);
+        }
+        
+        .background-color-c {
+            background-color: var(--background-color-c);
+        }
+        
+        .background-color-d {
+            background-color: var(--background-color-d);
+        }
+        
+        .background-color-e {
+            background-color: var(--background-color-e);
+        }
+        
+        .background-color-f {
+            background-color: var(--background-color-f);
+        }
+        
+        .background-color-g {
+            background-color: var(--background-color-g);
+        }
+        
+        .background-color-h {
+            background-color: var(--background-color-h);
+        }
+        
+        .background-color-i {
+            background-color: var(--background-color-i);
+        }
+        
+        .background-color-j {
+            background-color: var(--background-color-j);
+        }
+        
+        .background-color-k {
+            background-color: var(--background-color-k);
+        }
+        
+        .background-color-l {
+            background-color: var(--background-color-l);
+        }
+        
+        .background-color-m {
+            background-color: var(--background-color-m);
+        }
+        
+        .background-color-n {
+            background-color: var(--background-color-n);
+        }
+        
+        .border-radius-a {
+            border-radius: calc(var(--unit-a) * 2);
+        }
+        
+        .border-radius-b {
+            border-radius: calc(var(--unit-a) * 10);
+        }
+        
+        .border-a {
+            border: calc(var(--unit-a) * 0.2) solid var(--color-secondary-a);
+        }
+        
+        .soft-ui-inner-shadow {
+            box-shadow: inset 10px 10px 20px rgba(141, 175, 254, 0.3), inset -10px -10px 20px rgba(256, 256, 256, 0.3);
+        }
+        
+        .soft-ui-outer-shadow {
+            box-shadow: 15px 15px 25px rgba(141, 175, 254, 0.3), -15px -15px 25px rgba(255, 255, 255, 0.3);
+        }
+        /* To remove blue selecteion retangle on buttons on touchable devices like chrome on android */
+        
+        .no-select {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: calc(var(--unit-a) * 0.4);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background-color: var(--background-color-m);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: var(--background-color-n);
+        }
+        /*  */
+        /* prallax-container use with scroll-y enabled */
+        
+        .prallax-container {
+            perspective: 1000px;
+            -webkit-perspective: 1000px;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+        }
+        
+        .parallax-background {
+            transform: translateZ(-1000px) scale(2);
+            -webkit-transform: translateZ(-1000px) scale(2);
+        }
+        
+        .parallax-foreground {
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            transform: translateZ(0px) scale(1);
+            -webkit-transform: translateZ(0px) scale(1);
+        }
+        
+        .button-a {
+            color: var(--color-secondary-a);
+            padding: calc(var(--unit-a) * 0.5) calc(var(--unit-a) * 1) calc(var(--unit-a) * 0.2) calc(var(--unit-a) * 1);
+            border: calc(var(--unit-a) * 0.15) solid var(--color-secondary-a);
+        }
+        
+        .button-a:active {
+            border: calc(var(--unit-a) * 0.15) solid var(--color-black-a);
+            color: var(--color-black-a);
+        }
+        
+        .button-a:active>.svg-search>g>g,
+        .button-a:active>.svg-search>g>line {
+            stroke: var(--color-black-a);
+        }
+        
+        .fixed-border-top {
+            height: calc(var(--unit-a) * 0.15);
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .fixed-border-bottom {
+            height: calc(var(--unit-a) * 0.15);
+            width: 100%;
+            left: 0;
+            bottom: 0;
+        }
+        
+        .fixed-border-left {
+            width: calc(var(--unit-a) * 0.15);
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .fixed-border-right {
+            width: calc(var(--unit-a) * 0.15);
+            height: 100%;
+            right: 0;
+            top: 0;
+        }
+        
+        .svg-search {
+            height: calc(var(--unit-a) * 0.75);
+        }
+        
+        .svg-search>g>g,
+        .svg-search>g>line {
+            stroke: var(--color-secondary-a);
+            stroke-width: calc(var(--unit-a) * 0.4);
+        }
+        /* @media (hover: hover) and (pointer: fine) To remove sticky hover state in device with touch input like crome on android */
+        
+        @media (hover: hover) and (pointer: fine) {
+            .button-a:hover {
+                border: calc(var(--unit-a) * 0.15) solid var(--color-black-a);
+                color: var(--color-black-a);
+            }
+            .button-a:hover>.svg-search>g>g,
+            .button-a:hover>.svg-search>g>line {
+                stroke: var(--color-black-a);
+            }
+        }
+        /* media queries To change layout from mobile: top-bottom to web: left-right */
+        
+        @media screen and (min-width: 600px) {}
+    </style>
+    {% block styleContainer %} {% endblock %}
+</head>
+
+<body class="background-color-a width100vw-height100vh overflow-hidden">
+    <div class="
+                fixed-border fixed-border-top
+                position-fixed
+                background-color-m
+            "></div>
+    <div class="
+                fixed-border fixed-border-right
+                position-fixed
+                background-color-m
+            "></div>
+    <div class="
+                fixed-border fixed-border-bottom
+                position-fixed
+                background-color-m
+            "></div>
+    <div class="
+                fixed-border fixed-border-left
+                position-fixed
+                background-color-m
+            "></div>
+    <div class="
+                width100
+                height100
+                overflow-hidden overflow-y-auto
+                custom-scrollbar
+                prallax-container
+            ">
+        {% block bodyContainer %} {% endblock %} {% block scriptContainer %} {% endblock %}
+    </div>
+</body>
+
+</html>

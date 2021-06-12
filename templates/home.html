@@ -1,0 +1,657 @@
+{% extends 'base.html' %} {% block styleContainer %}
+<style>
+    /* .stroke-color-secondary-a {
+        stroke: var(--color-secondary-a);
+    }
+    
+    .stroke-width {
+        stroke-width: calc(var(--unit-a) * 0.15);
+    }
+    
+    .svg-width {
+        width: 100%;
+        height: 200%;
+    } */
+
+    .svg-css-background-wrapper {
+        height: 100%;
+        width: 100%;
+        /* background-image: url('http://localhost:5500/templates/background-waves-svg-vr-repeatable.svg'); */
+        background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221920%22%20height%3D%222604%22%20viewBox%3D%220%200%201920%202604%22%3E%0A%20%20%20%20%3Cg%20transform%3D%22scale(1.000%201.000)%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11332.689-1385c4.066%2C2.918%2C7.961%2C6.417%2C11.777%2C9.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.705%2C59.28%2C23.247%2C124.082%22%20transform%3D%22translate(-11110.689%201385.004)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11473.189-980c14.481%2C34.712%2C35.714%2C68.14%2C66.919%2C94.17%2C97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.665%2C97.522%2C48.247%2C179.086%22%20transform%3D%22translate(-11135.689%20980)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11336-1382c2.861%2C2.14%2C5.727%2C4.31%2C8.467%2C6.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.053%2C104.3%2C50.136%2C187.852%22%20transform%3D%22translate(-10355%201382)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11410-1283c32.069%2C74.823%2C32.287%2C152.383%2C32.287%2C152.383s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6A747.893%2C747.893%2C0%2C0%2C1%2C11951-793%22%20transform%3D%22translate(-10031%201283)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11518-907a196.74%2C196.74%2C0%2C0%2C0%2C22.108%2C21.17c97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6S11871.032-804%2C11922-797%22%20transform%3D%22translate(-10002%20907)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11165-1446c60.056%2C10.376%2C131.632%2C30.695%2C179.467%2C70.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787S13006.971%2C311.05%2C13085%2C396%22%20transform%3D%22translate(-11165%201840)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11528-897c3.958%2C3.909%2C7.8%2C7.579%2C12.108%2C11.17%2C97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C158.092%2C97.821%2C239.687%2C293.466%2C86.7%2C293.466%2C86.7%2C19.338.129%2C49.271%2C2.7%22%20transform%3D%22translate(-11528%201850)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11577-861c102.835%2C56.631%2C256.574%2C56.766%2C256.574%2C56.766s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787S13001.917%2C325.783%2C13093%2C409%22%20transform%3D%22translate(-11577%202195)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11601-849c101.077%2C44.751%2C232.574%2C44.766%2C232.574%2C44.766s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6C12943.76-41.4%2C12965.48-3.084%2C12980%2C35%22%20transform%3D%22translate(-11601%202569)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11132-1451c65.275%2C8.288%2C155.534%2C28.107%2C212.467%2C75.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6S12015.181-802.6%2C12113-721%22%20transform%3D%22translate(-11132%203325)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11156-1448c62.063%2C9.9%2C138.188%2C30.655%2C188.47%2C72.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s4.368%2C99.969%2C51.213%2C182.617%22%20transform%3D%22translate(-11156%203552)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11134-1451c65.137%2C8.474%2C154.5%2C27.822%2C210.75%2C74.74%2C3.424%2C2.856%2C8.031%2C7.185%2C11.25%2C10.26%22%20transform%3D%22translate(-11134%203970)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A');
+        background-repeat: repeat;
+        background-position: left center;
+        background-size: 250%;
+        /* -webkit-background-size: 250%;
+        -moz-background-size: 250%;
+        -o-background-size: 250%; */
+    }
+
+    .home-left-right-section-width {
+        width: 100%;
+    }
+
+    .home-left {
+        justify-content: center;
+        align-items: flex-start;
+        height: max-content;
+        min-height: 100vh;
+    }
+
+    .heading-wrapper {
+        margin: calc(var(--unit-a) * 2) 0;
+    }
+
+    .heading-wrapper > div {
+        max-width: 80%;
+    }
+
+    .sub-heading {
+        padding: calc(var(--unit-a) * 0.3) calc(var(--unit-a) * 0.5)
+            calc(var(--unit-a) * 0.1) calc(var(--unit-a) * 0.5);
+        margin-left: calc(var(--unit-a) * 1.5);
+    }
+
+    .heading {
+        padding: 0 calc(var(--unit-a) * 1.5);
+    }
+
+    .button-wrapper {
+        padding: 5% 5% 5% calc(5% + calc(var(--unit-a) * 1.5));
+    }
+
+    .home-right {
+        margin-top: calc(var(--unit-a) * 1);
+        margin-bottom: calc(var(--unit-a) * 8);
+    }
+
+    .card {
+        transform: translate(-50%, -50%);
+    }
+
+    .step-a {
+        height: calc(var(--unit-a) * 7);
+    }
+
+    .step-a > .card:nth-child(1) {
+        top: 26%;
+        left: 72%;
+        width: calc(var(--unit-a) * 8);
+        height: calc(var(--unit-a) * 9);
+    }
+
+    .step-b {
+        height: calc(var(--unit-a) * 10);
+    }
+
+    .step-b > .card:nth-child(1) {
+        top: 28%;
+        left: 29%;
+        width: calc(var(--unit-a) * 8);
+        height: calc(var(--unit-a) * 9);
+    }
+
+    .step-b > .card:nth-child(2) {
+        --max-lines: 4;
+        top: 57%;
+        left: 75%;
+        width: calc(var(--unit-a) * 7.2);
+        height: calc(var(--unit-a) * 8);
+    }
+
+    .step-c {
+        height: calc(var(--unit-a) * 14);
+    }
+
+    .step-c > .card:nth-child(1) {
+        --max-lines: 8;
+        top: 50%;
+        left: 47%;
+        width: calc(var(--unit-a) * 10);
+        height: calc(var(--unit-a) * 11.5);
+    }
+
+    .step-d {
+        height: calc(var(--unit-a) * 10);
+    }
+
+    .step-d > .card:nth-child(1) {
+        top: 48%;
+        left: 27%;
+        width: calc(var(--unit-a) * 8);
+        height: calc(var(--unit-a) * 9);
+    }
+
+    .parallax-card-a {
+        top: -106%;
+        left: -2%;
+        width: calc(var(--unit-a) * 3.6);
+        height: calc(var(--unit-a) * 3.6);
+    }
+
+    .parallax-card-b {
+        top: 68%;
+        left: -3%;
+        width: calc(var(--unit-a) * 4);
+        height: calc(var(--unit-a) * 4);
+    }
+
+    .parallax-card-c {
+        top: -20%;
+        left: 79%;
+        width: calc(var(--unit-a) * 3);
+        height: calc(var(--unit-a) * 3);
+    }
+
+    .parallax-card-d {
+        top: 40%;
+        left: 12%;
+        width: calc(var(--unit-a) * 4.2);
+        height: calc(var(--unit-a) * 4.2);
+    }
+
+    .parallax-card-e {
+        top: 68%;
+        left: 45%;
+        width: calc(var(--unit-a) * 7);
+        height: calc(var(--unit-a) * 7);
+    }
+
+    .parallax-card-f {
+        top: 19%;
+        left: 77%;
+        width: calc(var(--unit-a) * 3.4);
+        height: calc(var(--unit-a) * 3.4);
+    }
+
+    .parallax-card-g {
+        top: 76%;
+        left: 1%;
+        width: calc(var(--unit-a) * 4.2);
+        height: calc(var(--unit-a) * 4.4);
+    }
+    /*  */
+    /* To change layout from mobile: top-bottom to web: left-right */
+
+    @media screen and (min-width: 600px) {
+        .svg-size {
+            background-size: 140%;
+        }
+        .home-wrapper {
+            flex-flow: row;
+        }
+        .home-left-right-section-width {
+            width: 50%;
+        }
+        .home-left {
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0;
+        }
+        .home-right {
+            margin-top: calc(var(--unit-a) * 12);
+            margin-bottom: 90vh;
+        }
+    }
+
+    @media screen and (min-width: 1000px) {
+        .svg-size {
+            background-size: 100%;
+        }
+        .step-a {
+            height: calc(var(--unit-a) * 11);
+        }
+        .step-a > .card:nth-child(1) {
+            --max-lines: 6;
+            top: 26%;
+            left: 72%;
+            width: calc(var(--unit-a) * 10);
+            height: calc(var(--unit-a) * 11);
+        }
+        .step-b {
+            height: calc(var(--unit-a) * 14);
+        }
+        .step-b > .card:nth-child(1) {
+            --max-lines: 7;
+            top: 28%;
+            left: 29%;
+            width: calc(var(--unit-a) * 11);
+            height: calc(var(--unit-a) * 12);
+        }
+        .step-b > .card:nth-child(2) {
+            --max-lines: 6;
+            top: 57%;
+            left: 75%;
+            width: calc(var(--unit-a) * 9.2);
+            height: calc(var(--unit-a) * 10.5);
+        }
+        .step-c {
+            height: calc(var(--unit-a) * 18);
+        }
+        .step-c > .card:nth-child(1) {
+            --max-lines: 9;
+            top: 50%;
+            left: 47%;
+            width: calc(var(--unit-a) * 13);
+            height: calc(var(--unit-a) * 14.5);
+        }
+        .step-d {
+            height: calc(var(--unit-a) * 14);
+        }
+        .step-d > .card:nth-child(1) {
+            --max-lines: 7;
+            top: 48%;
+            left: 27%;
+            width: calc(var(--unit-a) * 11);
+            height: calc(var(--unit-a) * 12);
+        }
+        .parallax-card-a {
+            left: -11%;
+        }
+    }
+</style>
+{% endblock %} {% block bodyContainer %}
+<div
+    class="svg-css-background-wrapper svg-size height100 parallax-background"
+></div>
+<div
+    class="
+        home-wrapper
+        width100
+        display-flex display-flex-column
+        parallax-foreground
+        position-relative
+    "
+>
+    <div
+        class="
+            home-left home-left-right-section-width
+            display-flex display-flex-column
+        "
+    >
+        <div class="heading-wrapper padding5">
+            <div
+                class="
+                    width-max-content
+                    margin-a
+                    background-color-a
+                    border-radius-b
+                "
+            >
+                <p class="sub-heading font-size-4 font-chilanka text-color-c">
+                    <!-- Selected Poems of Raian Maruvin -->
+                    {{payload.sub_heading}}
+                </p>
+            </div>
+            <!-- <div class=""> -->
+            <!-- <p class="">Neon Stitches</p> -->
+            <p class="heading font-size-1 font-caveat text-color-a">
+                <!-- Cloud Traffic Control -->
+                {{payload.title}}
+            </p>
+            <!-- </div> -->
+        </div>
+        <div class="button-wrapper padding5">
+            <button
+                class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                "
+            >
+                <svg
+                    class="svg-search"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 76.364 76.364"
+                >
+                    <g transform="translate(-256 -64)">
+                        <g
+                            transform="translate(256 64)"
+                            fill="none"
+                            stroke-linecap="round"
+                        >
+                            <circle cx="32" cy="32" r="32" stroke="none" />
+                            <circle cx="32" cy="32" r="27.5" fill="none" />
+                        </g>
+                        <line
+                            x2="16"
+                            y2="16"
+                            transform="translate(310 118)"
+                            fill="none"
+                            stroke-linecap="round"
+                        />
+                    </g>
+                </svg>
+                &nbspSEARCH
+            </button>
+            <button
+                class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                "
+            >
+                ALL POEMS
+            </button>
+            <button
+                class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                "
+            >
+                INDEX
+            </button>
+            <button
+                class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                "
+            >
+                RANDOM
+            </button>
+            <button
+                class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                "
+            >
+                CATEGORIES
+            </button>
+            <button
+                class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                "
+            >
+                OTHER FAVOURITES
+            </button>
+        </div>
+    </div>
+    <div
+        class="
+            home-right home-left-right-section-width
+            min-height100
+            display-flex display-flex-center display-flex-column
+        "
+    >
+        <!-- {% for indexGroup in payload.poems_list %}
+        <div>
+            {% for index in indexGroup %}
+            <p>{{index}}</p>
+            {% endfor %}
+        </div>
+        {% endfor %} -->
+        {% for indexGroup in payload.poems_list %}
+        <div class="poemsGroup width100">
+            <div class="step-a width100 position-relative">
+                <div
+                    class="
+                        card
+                        position-absolute
+                        paddingtb4-lr3
+                        background-color-d
+                        border-radius-a
+                        shadow-c
+                    "
+                >
+                    <p
+                        class="
+                            card-heading
+                            font-size-4 font-chilanka
+                            text-color-b text-overflow-ellipsis
+                        "
+                    >
+                        {{indexGroup.0.titleArray}}
+                    </p>
+                    <p
+                        class="
+                            card-body-text
+                            font-size-5 font-montserrat-italic
+                            text-color-b text-overflow-max-lines
+                        "
+                    >
+                        {% for line in indexGroup.0.poemLinesArray %}
+                        {{line|linebreaksbr}} {% endfor %}
+                    </p>
+                </div>
+                <div
+                    class="
+                        parallax-card parallax-card-a
+                        z-index1
+                        background-color-l
+                        border-radius-c
+                    "
+                ></div>
+            </div>
+            <div class="step-b width100 position-relative">
+                <div
+                    class="
+                        card
+                        position-absolute
+                        paddingtb4-lr3
+                        background-color-b
+                        border-radius-a
+                        shadow-a
+                    "
+                >
+                    <p
+                        class="
+                            card-heading
+                            font-size-4 font-chilanka
+                            text-color-b text-overflow-ellipsis
+                        "
+                    >
+                        {{indexGroup.1.titleArray}}
+                    </p>
+                    <p
+                        class="
+                            card-body-text
+                            font-size-5 font-montserrat-italic
+                            text-color-b text-overflow-max-lines
+                        "
+                    >
+                        {% for line in indexGroup.1.poemLinesArray %}
+                        {{line|linebreaksbr}} {% endfor %}
+                    </p>
+                </div>
+                <div
+                    class="
+                        card
+                        position-absolute
+                        paddingtb4-lr3
+                        background-color-b
+                        border-radius-a
+                        shadow-d
+                    "
+                >
+                    <p
+                        class="
+                            card-heading
+                            font-size-4 font-chilanka
+                            text-color-b text-overflow-ellipsis
+                        "
+                    >
+                        {{indexGroup.2.titleArray}}
+                    </p>
+                    <p
+                        class="
+                            card-body-text
+                            font-size-5 font-montserrat-italic
+                            text-color-b text-overflow-max-lines
+                        "
+                    >
+                        {% for line in indexGroup.2.poemLinesArray %}
+                        {{line|linebreaksbr}} {% endfor %}
+                    </p>
+                </div>
+                <div
+                    class="
+                        parallax-card parallax-card-b
+                        z-index1
+                        background-color-i
+                        border-radius-c
+                    "
+                ></div>
+                <div
+                    class="
+                        parallax-card parallax-card-c
+                        z-index1
+                        background-color-k
+                        border-radius-d
+                    "
+                ></div>
+            </div>
+            <div class="step-c width100 position-relative">
+                <div
+                    class="
+                        card
+                        position-absolute
+                        paddingtb4-lr3
+                        background-color-c
+                        border-radius-a
+                        shadow-b
+                    "
+                >
+                    <p
+                        class="
+                            card-heading
+                            font-size-4 font-chilanka
+                            text-color-b text-overflow-ellipsis
+                        "
+                    >
+                        {{indexGroup.3.titleArray}}
+                    </p>
+                    <p
+                        class="
+                            card-body-text
+                            font-size-5 font-montserrat-italic
+                            text-color-b text-overflow-max-lines
+                        "
+                    >
+                        {% for line in indexGroup.3.poemLinesArray %}
+                        {{line|linebreaksbr}} {% endfor %}
+                    </p>
+                </div>
+                <div
+                    class="
+                        parallax-card parallax-card-d
+                        z-index1
+                        background-color-f
+                        border-radius-c
+                    "
+                ></div>
+                <div
+                    class="
+                        parallax-card parallax-card-e
+                        z-index-minus1
+                        background-color-j
+                        border-radius-c
+                    "
+                ></div>
+                <div
+                    class="
+                        parallax-card parallax-card-f
+                        z-index1
+                        background-color-g
+                        border-radius-c
+                    "
+                ></div>
+            </div>
+            <div class="step-d width100 position-relative">
+                <div
+                    class="
+                        card
+                        position-absolute
+                        paddingtb4-lr3
+                        background-color-b
+                        border-radius-a
+                        shadow-a
+                    "
+                >
+                    <p
+                        class="
+                            card-heading
+                            font-size-4 font-chilanka
+                            text-color-b text-overflow-ellipsis
+                        "
+                    >
+                        {{indexGroup.4.titleArray}}
+                    </p>
+                    <p
+                        class="
+                            card-body-text
+                            font-size-5 font-montserrat-italic
+                            text-color-b text-overflow-max-lines
+                        "
+                    >
+                        {% for line in indexGroup.4.poemLinesArray %}
+                        {{line|linebreaksbr}} {% endfor %}
+                    </p>
+                </div>
+                <div
+                    class="
+                        parallax-card parallax-card-g
+                        z-index1
+                        background-color-h
+                        border-radius-c
+                    "
+                ></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} {% block scriptContainer %}
+<script>
+    var rtime;
+    var timeout = false;
+    var delta = 200;
+
+    function setParallaxHeight() {
+        const backDom = document.querySelector('.parallax-background');
+        const frontDom = document.querySelector('.parallax-foreground');
+        if (backDom && frontDom) {
+            backDom.style.height = frontDom.offsetHeight + 'px';
+        }
+    }
+    document.addEventListener('DOMContentLoaded', () => setParallaxHeight());
+    window.addEventListener('resize', () => {
+        rtime = new Date();
+        if (timeout === false) {
+            timeout = true;
+            setTimeout(resizeend, delta);
+        }
+    });
+
+    function resizeend() {
+        if (new Date() - rtime < delta) {
+            setTimeout(resizeend, delta);
+        } else {
+            timeout = false;
+            // alert('Done resizing');
+            setParallaxHeight();
+        }
+    }
+</script>
+{% endblock %}

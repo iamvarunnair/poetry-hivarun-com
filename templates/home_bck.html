@@ -1,0 +1,250 @@
+{% extends 'base.html' %} {% block styleContainer %}
+<style>
+    .stroke-color-secondary-a {
+        stroke: var(--color-secondary-a);
+    }
+    
+    .stroke-width {
+        stroke-width: calc(var(--unit-a) * 0.15);
+    }
+    
+    .svg-width {
+        width: 100%;
+        height: 200%;
+    }
+    
+    .svg-css-background-wrapper {
+        height: 100%;
+        width: 100%;
+        /* background-image: url('http://localhost:5500/templates/background-waves-svg-vr-repeatable.svg'); */
+        background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221920%22%20height%3D%222604%22%20viewBox%3D%220%200%201920%202604%22%3E%0A%20%20%20%20%3Cg%20transform%3D%22scale(1.000%201.000)%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11332.689-1385c4.066%2C2.918%2C7.961%2C6.417%2C11.777%2C9.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.705%2C59.28%2C23.247%2C124.082%22%20transform%3D%22translate(-11110.689%201385.004)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11473.189-980c14.481%2C34.712%2C35.714%2C68.14%2C66.919%2C94.17%2C97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.665%2C97.522%2C48.247%2C179.086%22%20transform%3D%22translate(-11135.689%20980)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11336-1382c2.861%2C2.14%2C5.727%2C4.31%2C8.467%2C6.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.053%2C104.3%2C50.136%2C187.852%22%20transform%3D%22translate(-10355%201382)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11410-1283c32.069%2C74.823%2C32.287%2C152.383%2C32.287%2C152.383s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6A747.893%2C747.893%2C0%2C0%2C1%2C11951-793%22%20transform%3D%22translate(-10031%201283)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11518-907a196.74%2C196.74%2C0%2C0%2C0%2C22.108%2C21.17c97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6S11871.032-804%2C11922-797%22%20transform%3D%22translate(-10002%20907)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11165-1446c60.056%2C10.376%2C131.632%2C30.695%2C179.467%2C70.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787S13006.971%2C311.05%2C13085%2C396%22%20transform%3D%22translate(-11165%201840)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11528-897c3.958%2C3.909%2C7.8%2C7.579%2C12.108%2C11.17%2C97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C158.092%2C97.821%2C239.687%2C293.466%2C86.7%2C293.466%2C86.7%2C19.338.129%2C49.271%2C2.7%22%20transform%3D%22translate(-11528%201850)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11577-861c102.835%2C56.631%2C256.574%2C56.766%2C256.574%2C56.766s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787S13001.917%2C325.783%2C13093%2C409%22%20transform%3D%22translate(-11577%202195)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11601-849c101.077%2C44.751%2C232.574%2C44.766%2C232.574%2C44.766s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6C12943.76-41.4%2C12965.48-3.084%2C12980%2C35%22%20transform%3D%22translate(-11601%202569)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11132-1451c65.275%2C8.288%2C155.534%2C28.107%2C212.467%2C75.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6S12015.181-802.6%2C12113-721%22%20transform%3D%22translate(-11132%203325)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11156-1448c62.063%2C9.9%2C138.188%2C30.655%2C188.47%2C72.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s4.368%2C99.969%2C51.213%2C182.617%22%20transform%3D%22translate(-11156%203552)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11134-1451c65.137%2C8.474%2C154.5%2C27.822%2C210.75%2C74.74%2C3.424%2C2.856%2C8.031%2C7.185%2C11.25%2C10.26%22%20transform%3D%22translate(-11134%203970)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A');
+        background-repeat: repeat;
+        background-position: left center;
+        background-size: 100%;
+        /* -webkit-background-size: 250%;
+        -moz-background-size: 250%;
+        -o-background-size: 250%; */
+    }
+    
+    .home-left-right-section-width {
+        width: 100%;
+    }
+    
+    .home-left {
+        justify-content: center;
+        align-items: flex-start;
+    }
+    
+    .home-right {
+        height: 700%;
+    }
+    
+    .heading-wrapper {
+        margin: calc(var(--unit-a) * 2) 0;
+    }
+    
+    .sub-heading {
+        padding: calc(var(--unit-a) * 0.3) calc(var(--unit-a) * 0.5) calc(var(--unit-a) * 0.1) calc(var(--unit-a) * 0.5);
+        margin-left: calc(var(--unit-a) * 1.5);
+    }
+    
+    .heading {
+        padding: 0 calc(var(--unit-a) * 1.5);
+    }
+    
+    .button-wrapper {
+        padding: 5% 5% 5% calc(5% + calc(var(--unit-a) * 1.5));
+    }
+    /*  */
+    /* To change layout from mobile: top-bottom to web: left-right */
+    
+    @media screen and (min-width: 600px) {
+        .svg-size {
+            /* background-size: 140%; */
+        }
+        .home-wrapper {
+            flex-flow: row;
+        }
+        .home-left-right-section-width {
+            width: 50%;
+        }
+    }
+    
+    @media screen and (min-width: 1000px) {
+        .svg-size {
+            /* background-size: 100%; */
+        }
+    }
+</style>
+{% endblock %} {% block bodyContainer %}
+<div class="
+        svg-css-background-wrapper svg-size
+        height100
+        position-absolute
+        parallax-background
+    "></div>
+<div class="
+        home-wrapper
+        width100
+        parallax-foreground
+        display-flex display-flex-column
+    ">
+    <div class="
+            home-left home-left-right-section-width
+            display-flex display-flex-column
+        ">
+        <div class="heading-wrapper padding5">
+            <div class="
+                    width-max-content
+                    margin-a
+                    background-color-a
+                    border-radius-b
+                ">
+                <p class="sub-heading font-size-4 font-chilanka text-color-c">
+                    Selected Poems of Raian Maruvin
+                </p>
+            </div>
+            <!-- <div class=""> -->
+            <!-- <p class="">Neon Stitches</p> -->
+            <p class="heading font-size-1 font-caveat text-color-a">
+                Cloud Traffic Control
+            </p>
+            <!-- </div> -->
+        </div>
+        <div class="button-wrapper padding5">
+            <button class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                ">
+                <svg
+                    class="svg-search"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 76.364 76.364"
+                >
+                    <g transform="translate(-256 -64)">
+                        <g
+                            transform="translate(256 64)"
+                            fill="none"
+                            stroke-linecap="round"
+                        >
+                            <circle cx="32" cy="32" r="32" stroke="none" />
+                            <circle cx="32" cy="32" r="27.5" fill="none" />
+                        </g>
+                        <line
+                            x2="16"
+                            y2="16"
+                            transform="translate(310 118)"
+                            fill="none"
+                            stroke-linecap="round"
+                        />
+                    </g>
+                </svg>
+                &nbspSEARCH
+            </button>
+            <button class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                ">
+                ALL POEMS
+            </button>
+            <button class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                ">
+                INDEX
+            </button>
+            <button class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                ">
+                RANDOM
+            </button>
+            <button class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                ">
+                CATEGORIES
+            </button>
+            <button class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                ">
+                OTHER FAVOURITES
+            </button>
+        </div>
+    </div>
+    <div class="
+            home-right home-left-right-section-width
+            min-height100
+            background-color-k
+            display-flex display-flex-center
+        ">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aut incidunt reprehenderit repellat velit? Debitis dolore doloremque minus veritatis quaerat, aperiam atque. Nam repellat in expedita amet inventore officiis dicta quam placeat et quasi magnam
+            nihil, ullam earum adipisci sapiente, accusamus repudiandae sunt aliquam, laborum laboriosam at vitae. Molestiae nobis vitae officia dicta. Illo ullam voluptas est adipisci laudantium explicabo, cupiditate dignissimos quisquam error! Nam numquam
+            sint quisquam harum deleniti, veniam nihil, quas nesciunt quod illum aliquid molestias enim, quia suscipit accusamus maxime doloribus beatae? Eaque veniam magnam ipsa libero numquam voluptatibus, ipsam sit harum eum eius officia. Molestias
+            ullam pariatur, dolorem mollitia sint dicta officia explicabo dignissimos provident assumenda, excepturi beatae corrupti aperiam tempora ipsam et magni ratione repellendus quisquam, debitis vitae sed? Fuga dolore ea velit vel ex consectetur
+            sequi culpa distinctio quos eius aspernatur asperiores blanditiis neque, minima magnam temporibus tempore. Recusandae voluptas illum, velit consectetur omnis dolor repudiandae soluta accusamus. Ducimus molestiae harum unde numquam pariatur
+            commodi debitis corporis beatae recusandae vero nam perferendis molestias quia id repellat deleniti, optio in sunt fuga doloremque sequi placeat est! Expedita, aspernatur numquam iste dolores incidunt optio magnam quo, ducimus repudiandae,
+            odit ratione illo voluptatem quos corrupti sapiente nulla hic necessitatibus voluptatibus esse! Eius ad eaque odit pariatur aspernatur corrupti numquam explicabo rem, iusto nesciunt consectetur itaque facilis quia quod nam laborum earum beatae
+            fuga fugit eveniet quibusdam asperiores possimus delectus. Sint molestiae sequi aperiam reprehenderit fuga eius, porro veniam incidunt modi odio est sunt fugit aliquam itaque nulla, eum temporibus magni quidem ex laborum id. Mollitia nobis,
+            sequi dolorem porro aliquid quam quae voluptatum ducimus inventore molestias et modi ipsam, dolores recusandae libero? Dignissimos dolore doloremque, sunt culpa minima officia eligendi iste aperiam eius, saepe nisi at eos odio ex minus. Nesciunt
+            fuga ab tenetur eius voluptates impedit aliquid amet nihil harum, architecto possimus quod eaque fugiat dolor, quis sunt minus nam, corporis similique quibusdam aspernatur! Magni aperiam accusantium enim alias id? Sit dicta nostrum, error
+            distinctio assumenda ex voluptatum nam laudantium, exercitationem repudiandae fuga ipsam repellat quae sint! Deleniti perspiciatis dolores accusantium modi explicabo nisi odit laboriosam nam. At ipsam cupiditate omnis. Consequatur recusandae
+            fugit placeat officiis harum, hic vel nobis aliquid consequuntur iste architecto, nulla a eum eaque unde earum dolore excepturi, aut at asperiores illum tenetur omnis non quasi? Nam aut, quaerat veniam neque eligendi sequi nemo laboriosam
+            repellat ex. Pariatur, inventore excepturi. Numquam veniam animi nam dolorem quia dignissimos consequatur quis temporibus blanditiis deserunt aperiam assumenda, ut vero magni, nihil dolor nesciunt architecto corrupti doloribus quidem doloremque
+            ipsum! Incidunt quasi facilis quia, impedit corporis, non omnis reiciendis eos cumque nobis deserunt totam possimus beatae placeat ipsam minima expedita iste sed fugiat natus. Aut laboriosam accusantium rerum odio ab incidunt eos facere minus
+            placeat totam? Saepe eaque eveniet natus ex ullam, atque alias sint nostrum mollitia debitis consectetur laborum, optio voluptates, officia laudantium laboriosam in obcaecati. Dolorem, dolores ipsam qui consequuntur, fugiat blanditiis dignissimos
+            tempore nesciunt ipsa autem doloribus quisquam? Nihil, nesciunt neque ratione dolor autem, blanditiis nobis quisquam voluptas expedita a, repudiandae eveniet commodi alias? Architecto eveniet accusantium molestias aliquam officiis consequuntur,
+            eos, atque quos error labore aut minus voluptatibus amet quae, id animi nobis aspernatur? Libero, obcaecati porro sequi, illo in quo ad aliquid vero, aspernatur necessitatibus culpa asperiores corrupti esse cumque praesentium. Quisquam, similique!
+            Libero corrupti illum tenetur dolorem tempore soluta voluptate velit quisquam? Harum autem nisi omnis dolorum architecto aut libero consequuntur qui est eius, consequatur itaque natus, asperiores corrupti ipsa, fugit adipisci laborum iste
+            corporis. Libero suscipit eum quos temporibus natus, qui, maxime error repudiandae nemo, quo sed assumenda. Provident?
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aut incidunt reprehenderit repellat velit? Debitis dolore doloremque minus veritatis quaerat, aperiam atque. Nam repellat in expedita amet inventore officiis dicta quam placeat et quasi magnam
+            nihil, ullam earum adipisci sapiente, accusamus repudiandae sunt aliquam, laborum laboriosam at vitae. Molestiae nobis vitae officia dicta. Illo ullam voluptas est adipisci laudantium explicabo, cupiditate dignissimos quisquam error! Nam numquam
+            sint quisquam harum deleniti, veniam nihil, quas nesciunt quod illum aliquid molestias enim, quia suscipit accusamus maxime doloribus beatae? Eaque veniam magnam ipsa libero numquam voluptatibus, ipsam sit harum eum eius officia. Molestias
+            ullam pariatur, dolorem mollitia sint dicta officia explicabo dignissimos provident assumenda, excepturi beatae corrupti aperiam tempora ipsam et magni ratione repellendus quisquam, debitis vitae sed? Fuga dolore ea velit vel ex consectetur
+            sequi culpa distinctio quos eius aspernatur asperiores blanditiis neque, minima magnam temporibus tempore. Recusandae voluptas illum, velit consectetur omnis dolor repudiandae soluta accusamus. Ducimus molestiae harum unde numquam pariatur
+            commodi debitis corporis beatae recusandae vero nam perferendis molestias quia id repellat deleniti, optio in sunt fuga doloremque sequi placeat est! Expedita, aspernatur numquam iste dolores incidunt optio magnam quo, ducimus repudiandae,
+            odit ratione illo voluptatem quos corrupti sapiente nulla hic necessitatibus voluptatibus esse! Eius ad eaque odit pariatur aspernatur corrupti numquam explicabo rem, iusto nesciunt consectetur itaque facilis quia quod nam laborum earum beatae
+            fuga fugit eveniet quibusdam asperiores possimus delectus. Sint molestiae sequi aperiam reprehenderit fuga eius, porro veniam incidunt modi odio est sunt fugit aliquam itaque nulla, eum temporibus magni quidem ex laborum id. Mollitia nobis,
+            sequi dolorem porro aliquid quam quae voluptatum ducimus inventore molestias et modi ipsam, dolores recusandae libero? Dignissimos dolore doloremque, sunt culpa minima officia eligendi iste aperiam eius, saepe nisi at eos odio ex minus. Nesciunt
+            fuga ab tenetur eius voluptates impedit aliquid amet nihil harum, architecto possimus quod eaque fugiat dolor, quis sunt minus nam, corporis similique quibusdam aspernatur! Magni aperiam accusantium enim alias id? Sit dicta nostrum, error
+            distinctio assumenda ex voluptatum nam laudantium, exercitationem repudiandae fuga ipsam repellat quae sint! Deleniti perspiciatis dolores accusantium modi explicabo nisi odit laboriosam nam. At ipsam cupiditate omnis. Consequatur recusandae
+            fugit placeat officiis harum, hic vel nobis aliquid consequuntur iste architecto, nulla a eum eaque unde earum dolore excepturi, aut at asperiores illum tenetur omnis non quasi? Nam aut, quaerat veniam neque eligendi sequi nemo laboriosam
+            repellat ex. Pariatur, inventore excepturi. Numquam veniam animi nam dolorem quia dignissimos consequatur quis temporibus blanditiis deserunt aperiam assumenda, ut vero magni, nihil dolor nesciunt architecto corrupti doloribus quidem doloremque
+            ipsum! Incidunt quasi facilis quia, impedit corporis, non omnis reiciendis eos cumque nobis deserunt totam possimus beatae placeat ipsam minima expedita iste sed fugiat natus. Aut laboriosam accusantium rerum odio ab incidunt eos facere minus
+            placeat totam? Saepe eaque eveniet natus ex ullam, atque alias sint nostrum mollitia debitis consectetur laborum, optio voluptates, officia laudantium laboriosam in obcaecati. Dolorem, dolores ipsam qui consequuntur, fugiat blanditiis dignissimos
+            tempore nesciunt ipsa autem doloribus quisquam? Nihil, nesciunt neque ratione dolor autem, blanditiis nobis quisquam voluptas expedita a, repudiandae eveniet commodi alias? Architecto eveniet accusantium molestias aliquam officiis consequuntur,
+            eos, atque quos error labore aut minus voluptatibus amet quae, id animi nobis aspernatur? Libero, obcaecati porro sequi, illo in quo ad aliquid vero, aspernatur necessitatibus culpa asperiores corrupti esse cumque praesentium. Quisquam, similique!
+            Libero corrupti illum tenetur dolorem tempore soluta voluptate velit quisquam? Harum autem nisi omnis dolorum architecto aut libero consequuntur qui est eius, consequatur itaque natus, asperiores corrupti ipsa, fugit adipisci laborum iste
+            corporis. Libero suscipit eum quos temporibus natus, qui, maxime error repudiandae nemo, quo sed assumenda. Provident?
+        </p>
+    </div>
+</div>
+{% endblock %}
