@@ -1,0 +1,121 @@
+{% extends 'base.html' %} {% block title %} Poem {{request.path|slice:"1:"}} of
+Raian Maruvin's Selected Poems {% endblock title %} {% block styleContainer %}
+<style>
+    .random-button {
+        margin: calc(var(--unit-a) * 0.4) calc(var(--unit-a) * 1);
+    }
+    @media screen and (min-width: 600px) {
+        .random-button {
+            margin: calc(var(--unit-a) * 0.4) calc(var(--unit-a) * 0.2);
+        }
+    }
+</style>
+{% endblock %} {% block bodyContainer %}
+<div
+    class="
+        page-wrapper
+        width100
+        display-flex display-flex-center display-flex-column
+        parallax-foreground
+    "
+>
+    <div class="top-wrapper width100 margin-a">
+        <a class="no-select" href="{% url back_url %}">
+            <button
+                class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-b
+                    no-select
+                "
+            >
+                <svg
+                    class="svg-back"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="45.8"
+                    height="38.3"
+                    viewBox="0 0 45.8 38.3"
+                >
+                    <g transform="translate(-185.2 -725)">
+                        <rect
+                            width="45.8"
+                            height="38.3"
+                            rx="19.15"
+                            transform="translate(185.2 725)"
+                            fill="none"
+                        />
+                        <line
+                            x2="37.27"
+                            transform="translate(190.713 744.07)"
+                            fill="none"
+                            stroke-linecap="round"
+                        />
+                        <path
+                            d="M13143.351-90.692l-16.1,16.1,16.1,16.1"
+                            transform="translate(-12939.001 818.708)"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </g>
+                </svg>
+                &nbspGo Back
+            </button>
+        </a>
+        {% if random_button %}
+        <a class="no-select" href="{% url 'random' %}{{'?back=home'}}">
+            <button
+                class="
+                    random-button
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-a
+                    no-select
+                "
+            >
+                Another Random
+            </button>
+        </a>
+        {% endif %}
+    </div>
+    <div class="title-wrapper width80">
+        <p class="heading font-size-1 font-caveat text-color-a">
+            {{payload.titleArray}}
+        </p>
+    </div>
+    <div class="text-wrapper padding5 back background-color-e">
+        {% for line in payload.poemLinesArray %} {% if forloop.conter0 != 0 %}
+        <p
+            class="
+                card-body-text
+                font-size-3 font-montserrat-italic
+                text-color-a
+            "
+        >
+            {{line|linebreaksbr}}
+        </p>
+        {% endif %} {%endfor %}
+        <br />
+        <br />
+        <br />
+        <div
+            class="
+                width-max-content
+                display-flex-align-self-start
+                padding-b
+                margin-b
+                font-size-3 font-chilanka font-weight-heavy
+                text-color-c
+                background-color-a
+                border-a border-radius-b
+                no-select
+            "
+        >
+            Raian Maruvin
+        </div>
+    </div>
+</div>
+{% endblock %}

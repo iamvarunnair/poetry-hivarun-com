@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block title %} Index of Raian Maruvin's Selected
+Poems {% endblock title %} {% block bodyContainer %}
+<div
+    class="
+        page-wrapper
+        width100
+        display-flex display-flex-center display-flex-column
+        parallax-foreground
+    "
+>
+    <div class="top-wrapper width100 margin-a">
+        <a class="no-select" href="{% url back_url %}">
+            <button
+                class="
+                    margin-b
+                    font-size-3 font-chilanka
+                    background-color-a
+                    border-radius-b
+                    button-b
+                    no-select
+                "
+            >
+                <svg
+                    class="svg-back"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="45.8"
+                    height="38.3"
+                    viewBox="0 0 45.8 38.3"
+                >
+                    <g transform="translate(-185.2 -725)">
+                        <rect
+                            width="45.8"
+                            height="38.3"
+                            rx="19.15"
+                            transform="translate(185.2 725)"
+                            fill="none"
+                        />
+                        <line
+                            x2="37.27"
+                            transform="translate(190.713 744.07)"
+                            fill="none"
+                            stroke-linecap="round"
+                        />
+                        <path
+                            d="M13143.351-90.692l-16.1,16.1,16.1,16.1"
+                            transform="translate(-12939.001 818.708)"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </g>
+                </svg>
+                &nbspGo Back
+            </button>
+        </a>
+    </div>
+    <div class="title-wrapper width80">
+        <p class="heading font-size-1 font-caveat text-color-a">Index.</p>
+    </div>
+    <div class="text-wrapper padding5 back background-color-e">
+        {% for entry in payload %}
+        <a
+            class="no-select"
+            href="{% url 'poem' poem_index=forloop.counter %}{{'?back=index'}}"
+        >
+            <p
+                class="
+                    card-body-text
+                    font-size-3 font-montserrat-italic
+                    text-color-d
+                    margin-a
+                "
+            >
+                {{forloop.counter}}.&nbsp&nbsp&nbsp&nbsp{{entry.title}}
+            </p>
+        </a>
+        {%endfor %}
+    </div>
+</div>
+{% endblock %}

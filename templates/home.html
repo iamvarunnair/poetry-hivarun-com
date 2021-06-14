@@ -1,31 +1,5 @@
-{% extends 'base.html' %} {% block styleContainer %}
+{% extends 'base.html' %}{% block styleContainer %}
 <style>
-    /* .stroke-color-secondary-a {
-        stroke: var(--color-secondary-a);
-    }
-    
-    .stroke-width {
-        stroke-width: calc(var(--unit-a) * 0.15);
-    }
-    
-    .svg-width {
-        width: 100%;
-        height: 200%;
-    } */
-
-    .svg-css-background-wrapper {
-        height: 100%;
-        width: 100%;
-        /* background-image: url('http://localhost:5500/templates/background-waves-svg-vr-repeatable.svg'); */
-        background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221920%22%20height%3D%222604%22%20viewBox%3D%220%200%201920%202604%22%3E%0A%20%20%20%20%3Cg%20transform%3D%22scale(1.000%201.000)%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11332.689-1385c4.066%2C2.918%2C7.961%2C6.417%2C11.777%2C9.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.705%2C59.28%2C23.247%2C124.082%22%20transform%3D%22translate(-11110.689%201385.004)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11473.189-980c14.481%2C34.712%2C35.714%2C68.14%2C66.919%2C94.17%2C97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.665%2C97.522%2C48.247%2C179.086%22%20transform%3D%22translate(-11135.689%20980)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11336-1382c2.861%2C2.14%2C5.727%2C4.31%2C8.467%2C6.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787.053%2C104.3%2C50.136%2C187.852%22%20transform%3D%22translate(-10355%201382)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11410-1283c32.069%2C74.823%2C32.287%2C152.383%2C32.287%2C152.383s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6A747.893%2C747.893%2C0%2C0%2C1%2C11951-793%22%20transform%3D%22translate(-10031%201283)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11518-907a196.74%2C196.74%2C0%2C0%2C0%2C22.108%2C21.17c97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6S11871.032-804%2C11922-797%22%20transform%3D%22translate(-10002%20907)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11165-1446c60.056%2C10.376%2C131.632%2C30.695%2C179.467%2C70.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6%2C195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787S13006.971%2C311.05%2C13085%2C396%22%20transform%3D%22translate(-11165%201840)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11528-897c3.958%2C3.909%2C7.8%2C7.579%2C12.108%2C11.17%2C97.823%2C81.6%2C293.466%2C81.6%2C293.466%2C81.6s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C158.092%2C97.821%2C239.687%2C293.466%2C86.7%2C293.466%2C86.7%2C19.338.129%2C49.271%2C2.7%22%20transform%3D%22translate(-11528%201850)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11577-861c102.835%2C56.631%2C256.574%2C56.766%2C256.574%2C56.766s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787S13001.917%2C325.783%2C13093%2C409%22%20transform%3D%22translate(-11577%202195)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11601-849c101.077%2C44.751%2C232.574%2C44.766%2C232.574%2C44.766s195.648%2C0%2C293.468%2C81.6%2C97.822%2C244.787%2C97.822%2C244.787%2C0%2C163.191%2C97.823%2C244.787%2C293.468%2C81.6%2C293.468%2C81.6%2C195.641%2C0%2C293.465%2C81.6C12943.76-41.4%2C12965.48-3.084%2C12980%2C35%22%20transform%3D%22translate(-11601%202569)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11132-1451c65.275%2C8.288%2C155.534%2C28.107%2C212.467%2C75.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s0%2C163.192%2C97.821%2C244.787%2C293.466%2C81.6%2C293.466%2C81.6S12015.181-802.6%2C12113-721%22%20transform%3D%22translate(-11132%203325)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11156-1448c62.063%2C9.9%2C138.188%2C30.655%2C188.47%2C72.6%2C97.82%2C81.6%2C97.82%2C244.787%2C97.82%2C244.787s4.368%2C99.969%2C51.213%2C182.617%22%20transform%3D%22translate(-11156%203552)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M11134-1451c65.137%2C8.474%2C154.5%2C27.822%2C210.75%2C74.74%2C3.424%2C2.856%2C8.031%2C7.185%2C11.25%2C10.26%22%20transform%3D%22translate(-11134%203970)%22%20fill%3D%22none%22%20stroke%3D%22%23916aff%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%225%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A');
-        background-repeat: repeat;
-        background-position: left center;
-        background-size: 250%;
-        /* -webkit-background-size: 250%;
-        -moz-background-size: 250%;
-        -o-background-size: 250%; */
-    }
-
     .home-left-right-section-width {
         width: 100%;
     }
@@ -34,7 +8,7 @@
         justify-content: center;
         align-items: flex-start;
         height: max-content;
-        min-height: 100vh;
+        min-height: 95vh;
     }
 
     .heading-wrapper {
@@ -186,6 +160,7 @@
             position: sticky;
             position: -webkit-sticky;
             top: 0;
+            min-height: 100vh;
         }
         .home-right {
             margin-top: calc(var(--unit-a) * 12);
@@ -251,9 +226,6 @@
 </style>
 {% endblock %} {% block bodyContainer %}
 <div
-    class="svg-css-background-wrapper svg-size height100 parallax-background"
-></div>
-<div
     class="
         home-wrapper
         width100
@@ -278,20 +250,15 @@
                 "
             >
                 <p class="sub-heading font-size-4 font-chilanka text-color-c">
-                    <!-- Selected Poems of Raian Maruvin -->
                     {{payload.sub_heading}}
                 </p>
             </div>
-            <!-- <div class=""> -->
-            <!-- <p class="">Neon Stitches</p> -->
             <p class="heading font-size-1 font-caveat text-color-a">
-                <!-- Cloud Traffic Control -->
                 {{payload.title}}
             </p>
-            <!-- </div> -->
         </div>
         <div class="button-wrapper padding5">
-            <button
+            <!-- <button
                 class="
                     margin-b
                     font-size-3 font-chilanka
@@ -325,44 +292,50 @@
                     </g>
                 </svg>
                 &nbspSEARCH
-            </button>
-            <button
-                class="
-                    margin-b
-                    font-size-3 font-chilanka
-                    background-color-a
-                    border-radius-b
-                    button-a
-                    no-select
-                "
-            >
-                ALL POEMS
-            </button>
-            <button
-                class="
-                    margin-b
-                    font-size-3 font-chilanka
-                    background-color-a
-                    border-radius-b
-                    button-a
-                    no-select
-                "
-            >
-                INDEX
-            </button>
-            <button
-                class="
-                    margin-b
-                    font-size-3 font-chilanka
-                    background-color-a
-                    border-radius-b
-                    button-a
-                    no-select
-                "
-            >
-                RANDOM
-            </button>
-            <button
+            </button> -->
+            <a class="no-select" href="{% url 'poems' %}{{'?back=home'}}">
+                <button
+                    class="
+                        margin-b
+                        font-size-3 font-chilanka
+                        background-color-a
+                        border-radius-b
+                        button-a
+                        no-select
+                    "
+                >
+                    ALL POEMS
+                </button>
+            </a>
+            <a class="no-select" href="{% url 'index' %}{{'?back=home'}}">
+                <button
+                    class="
+                        margin-b
+                        font-size-3 font-chilanka
+                        background-color-a
+                        border-radius-b
+                        button-a
+                        no-select
+                    "
+                >
+                    INDEX
+                </button>
+            </a>
+            <a class="no-select" href="{% url 'random' %}{{'?back=home'}}">
+                <button
+                    class="
+                        margin-b
+                        font-size-3 font-chilanka
+                        background-color-a
+                        border-radius-b
+                        button-a
+                        no-select
+                    "
+                >
+                    RANDOM
+                </button>
+            </a>
+            <!-- <button
                 class="
                     margin-b
                     font-size-3 font-chilanka
@@ -373,8 +346,8 @@
                 "
             >
                 CATEGORIES
-            </button>
-            <button
+            </button> -->
+            <!-- <button
                 class="
                     margin-b
                     font-size-3 font-chilanka
@@ -385,7 +358,7 @@
                 "
             >
                 OTHER FAVOURITES
-            </button>
+            </button> -->
         </div>
     </div>
     <div
@@ -404,8 +377,9 @@
         {% endfor %} -->
         {% for indexGroup in payload.poems_list %}
         <div class="poemsGroup width100">
+            {% widthratio forloop.counter0 1 '5' as res %}
             <div class="step-a width100 position-relative">
-                <div
+                <a
                     class="
                         card
                         position-absolute
@@ -413,7 +387,9 @@
                         background-color-d
                         border-radius-a
                         shadow-c
+                        no-select
                     "
+                    href="{% url 'poem' poem_index=res|add:'1'%}{{'?back=home'}}"
                 >
                     <p
                         class="
@@ -434,7 +410,7 @@
                         {% for line in indexGroup.0.poemLinesArray %}
                         {{line|linebreaksbr}} {% endfor %}
                     </p>
-                </div>
+                </a>
                 <div
                     class="
                         parallax-card parallax-card-a
@@ -445,7 +421,7 @@
                 ></div>
             </div>
             <div class="step-b width100 position-relative">
-                <div
+                <a
                     class="
                         card
                         position-absolute
@@ -453,7 +429,9 @@
                         background-color-b
                         border-radius-a
                         shadow-a
+                        no-select
                     "
+                    href="{% url 'poem' poem_index=res|add:'2'%}{{'?back=home'}}"
                 >
                     <p
                         class="
@@ -474,8 +452,8 @@
                         {% for line in indexGroup.1.poemLinesArray %}
                         {{line|linebreaksbr}} {% endfor %}
                     </p>
-                </div>
-                <div
+                </a>
+                <a
                     class="
                         card
                         position-absolute
@@ -483,7 +461,9 @@
                         background-color-b
                         border-radius-a
                         shadow-d
+                        no-select
                     "
+                    href="{% url 'poem' poem_index=res|add:'3' %}{{'?back=home'}}"
                 >
                     <p
                         class="
@@ -504,7 +484,7 @@
                         {% for line in indexGroup.2.poemLinesArray %}
                         {{line|linebreaksbr}} {% endfor %}
                     </p>
-                </div>
+                </a>
                 <div
                     class="
                         parallax-card parallax-card-b
@@ -523,7 +503,7 @@
                 ></div>
             </div>
             <div class="step-c width100 position-relative">
-                <div
+                <a
                     class="
                         card
                         position-absolute
@@ -531,7 +511,9 @@
                         background-color-c
                         border-radius-a
                         shadow-b
+                        no-select
                     "
+                    href="{% url 'poem' poem_index=res|add:'4' %}{{'?back=home'}}"
                 >
                     <p
                         class="
@@ -552,7 +534,7 @@
                         {% for line in indexGroup.3.poemLinesArray %}
                         {{line|linebreaksbr}} {% endfor %}
                     </p>
-                </div>
+                </a>
                 <div
                     class="
                         parallax-card parallax-card-d
@@ -579,7 +561,7 @@
                 ></div>
             </div>
             <div class="step-d width100 position-relative">
-                <div
+                <a
                     class="
                         card
                         position-absolute
@@ -587,7 +569,9 @@
                         background-color-b
                         border-radius-a
                         shadow-a
+                        no-select
                     "
+                    href="{% url 'poem' poem_index=res|add:'5' %}{{'?back=home'}}"
                 >
                     <p
                         class="
@@ -608,7 +592,7 @@
                         {% for line in indexGroup.4.poemLinesArray %}
                         {{line|linebreaksbr}} {% endfor %}
                     </p>
-                </div>
+                </a>
                 <div
                     class="
                         parallax-card parallax-card-g
@@ -622,36 +606,4 @@
         {% endfor %}
     </div>
 </div>
-{% endblock %} {% block scriptContainer %}
-<script>
-    var rtime;
-    var timeout = false;
-    var delta = 200;
-
-    function setParallaxHeight() {
-        const backDom = document.querySelector('.parallax-background');
-        const frontDom = document.querySelector('.parallax-foreground');
-        if (backDom && frontDom) {
-            backDom.style.height = frontDom.offsetHeight + 'px';
-        }
-    }
-    document.addEventListener('DOMContentLoaded', () => setParallaxHeight());
-    window.addEventListener('resize', () => {
-        rtime = new Date();
-        if (timeout === false) {
-            timeout = true;
-            setTimeout(resizeend, delta);
-        }
-    });
-
-    function resizeend() {
-        if (new Date() - rtime < delta) {
-            setTimeout(resizeend, delta);
-        } else {
-            timeout = false;
-            // alert('Done resizing');
-            setParallaxHeight();
-        }
-    }
-</script>
 {% endblock %}
