@@ -83,10 +83,11 @@ Raian Maruvin's Selected Poems {% endblock title %} {% block styleContainer %}
     </div>
     <div class="title-wrapper width80">
         <p class="heading font-size-1 font-caveat text-color-a">
-            {{payload.titleArray}}
+            {{payload.title}}
         </p>
     </div>
     <div class="text-wrapper padding5 back background-color-e">
+        <br />
         {% for line in payload.poemLinesArray %} {% if forloop.conter0 != 0 %}
         <p
             class="
@@ -98,7 +99,6 @@ Raian Maruvin's Selected Poems {% endblock title %} {% block styleContainer %}
             {{line|linebreaksbr}}
         </p>
         {% endif %} {%endfor %}
-        <br />
         <br />
         <br />
         <div

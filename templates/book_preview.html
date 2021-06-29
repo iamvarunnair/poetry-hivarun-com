@@ -1,87 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Zzzzz...</title>
+        <link rel="shortcut icon" href="https://hivarun.com/favicon.ico" />
+        <style>
+            * {
+                text-align: center;
+            }
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zzzzz...</title>
-    <link rel="shortcut icon" href="https://hivarun.com/favicon.ico" />
-    <style>
-        * {
-            text-align: center;
-        }
-        
-        body {
-            background: rgb(39, 39, 39);
-            display: flex;
-            flex-flow: column;
-            justify-content: center;
-            align-items: center;
-            padding: 3vw;
-        }
-        
-        h1 {
-            font-size: 72px;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient( 45deg, rgba(255, 113, 113, 1) 0%, rgba(236, 255, 143, 1) 100%);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-        }
-        
-        h3 {
-            font-size: 30px;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient( 129deg, rgba(52, 215, 205, 1) 0%, rgba(34, 194, 223, 1) 52%, rgba(0, 155, 255, 1) 100%);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-        }
-        
-        h6 {
-            font-size: 30px;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient( 129deg, rgba(252, 0, 30, 1) 0%, rgba(0, 155, 255, 1) 100%);
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-            margin: calc(0.4rem + 0.2vw);
-        }
-        
-        hr {
-            width: 10%;
-        }
-        
-        .display-flex {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
-</head>
+            body {
+                background: rgb(39, 39, 39);
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                align-items: center;
+                padding: 3vw;
+            }
 
-<body>
-    <h1>{{payload.titlePage.title}}</h1>
-    <br />
-    <br /> {% for subHeading in payload.titlePage.subHeadings %}
-    <h3>{{subHeading}}</h3>
-    <br /><br /> {% endfor %}
-    <h1>Index</h1>
-    <br /><br /> {% for entry in payload.indexArray %}
-    <div class="display-flex">
-        <h3>{{entry.title}}</h3>
-        &nbsp&nbsp&nbsp
-        <h6>{{entry.pageNo}}</h6>
-    </div>
-    {% endfor %} {% for poem in payload.poemsArray %}
-    <h3>{{poem.titleArray}}</h3>
-    <br /><br /> {% for line in poem.poemLinesArray %} {% if line == '\n' %}
-    <h6>&nbsp</h6>
-    <br /> {% elif line != '\n' %}
-    <h6>{{line}}</h6>
-    <br /> {% endif%} {% endfor %} <br /><br /><br />
-    <hr />
-    <br /><br /><br /><br /><br /><br />{% endfor%} <br /><br /><br />
-    <h1>the end</h1>
-    <br /><br />
-    <h6>Thank you for reading.</h6>
-</body>
+            h1 {
+                font-size: 72px;
+                font-family: Arial, Helvetica, sans-serif;
+                background: linear-gradient(
+                    45deg,
+                    rgba(255, 113, 113, 1) 0%,
+                    rgba(236, 255, 143, 1) 100%
+                );
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
 
+            h3 {
+                font-size: 30px;
+                font-family: Arial, Helvetica, sans-serif;
+                background: linear-gradient(
+                    129deg,
+                    rgba(52, 215, 205, 1) 0%,
+                    rgba(34, 194, 223, 1) 52%,
+                    rgba(0, 155, 255, 1) 100%
+                );
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+
+            h6 {
+                font-size: 30px;
+                font-family: Arial, Helvetica, sans-serif;
+                background: linear-gradient(
+                    129deg,
+                    rgba(252, 0, 30, 1) 0%,
+                    rgba(0, 155, 255, 1) 100%
+                );
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                margin: calc(0.4rem + 0.2vw);
+            }
+
+            hr {
+                width: 10%;
+            }
+
+            .display-flex {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>{{payload.titlePage.title}}</h1>
+        <br />
+        <br />
+        {% for subHeading in payload.titlePage.subHeadings %}
+        <h3>{{subHeading}}</h3>
+        <br /><br />
+        {% endfor %}
+        <h1>Index</h1>
+        <br /><br />
+        {% for entry in payload.indexArray %}
+        <div class="display-flex">
+            <h3>{{entry.title}}</h3>
+            &nbsp&nbsp&nbsp
+            <h6>{{entry.pageNo}}</h6>
+        </div>
+        {% endfor %} {% for poem in payload.poemsArray %}
+        <h3>{{poem.title}}</h3>
+        <br /><br />
+        {% for line in poem.poemLinesArray %} {% if line == '\n' %}
+        <h6>&nbsp</h6>
+        <br />
+        {% elif line != '\n' %}
+        <h6>{{line}}</h6>
+        <br />
+        {% endif%} {% endfor %} <br /><br /><br />
+        <hr />
+        <br /><br /><br /><br /><br /><br />{% endfor%} <br /><br /><br />
+        <h1>the end</h1>
+        <br /><br />
+        <h6>Thank you for reading.</h6>
+    </body>
 </html>

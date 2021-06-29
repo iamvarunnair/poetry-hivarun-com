@@ -101,6 +101,35 @@ deactivate
 -   Update latest entries
 -   Add scroll to top button
 -   Store krivate keys in .env file
+-   Use the following for pixlatted background-image svg while scalling
+    [option 1 stack overflow](https://stackoverflow.com/questions/11856161/using-svg-as-css3-background-image-with-scaling)
+
+```
+<div class="btn"></div>
+<div class="z">
+<div class="btn"></div>
+</div>
+.btn {
+    width: 100px;
+    height: 100px;
+    background: url(http://upload.wikimedia.org/wikipedia/en/c/ce/SVG-logo.svg) no-repeat;
+}
+.z {
+    zoom: 300%;
+    -moz-transform: 0 0;
+    -moz-transform: scale(3);
+}
+```
+
+[option 2 stack overflow](https://stackoverflow.com/questions/50209072/svg-background-image-scaling-issue)
+Do not add width and height to the SVG Element, or background-size:cover in CSS. The SVG way of positioning and sizing works via attribute preserveAspectRatio:
+
+```
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 347 385" preserveAspectRatio="xMaxYMax slice">
+```
+
+Option 3: exposrt svg at larger size
 
 #
 

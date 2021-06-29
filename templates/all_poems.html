@@ -88,22 +88,22 @@ Selected Poems {% endblock title %} {% block styleContainer %}
         <a
             class="
                 all-poem-card
-                paddingtb4-lr3
+                padding-c
                 border-radius-a
                 shadow-a
                 no-select
-                {% cycle 'background-color-b' 'background-color-c' 'background-color-d' %}
+                {% cycle 'background-color-b' 'background-color-c' 'background-color-d' 'background-color-c' 'background-color-d' %}
             "
             href="{% url 'poem' poem_index=forloop.counter %}{{'?back=poems'}}"
         >
             <p
                 class="
-                    card-heading
+                    card-heading margin-c
                     font-size-4 font-chilanka
                     text-color-b text-overflow-ellipsis
                 "
             >
-                {{poem.titleArray}}
+                {{poem.title}}
             </p>
             <p
                 class="

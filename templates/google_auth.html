@@ -1,281 +1,174 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Google Docs API Quickstart</title>
+        <meta charset="utf-8" />
+    </head>
 
-<head>
-    <title>Google Docs API Quickstart</title>
-    <meta charset="utf-8" />
-</head>
+    <body>
+        <p>Google Docs API Quickstart</p>
+        <!--Add buttons to initiate auth sequence and sign out-->
+        <button id="authorize_button" style="display: none">Authorize</button>
+        <button id="signout_button" style="display: none">Sign Out</button>
+        <h1 id="content"></h1>
 
-<body>
-    <p>Google Docs API Quickstart</p>
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" style="display: none">Authorize</button>
-    <button id="signout_button" style="display: none">Sign Out</button>
-    <h1 id="content"></h1>
+        <script type="text/javascript">
+            // Client ID and API key from the Developer Console
+            var CLIENT_ID =
+                '987925713651-mdc18s622glenck8k8t3icinb5kprll9.apps.googleusercontent.com';
+            var API_KEY = 'AIzaSyDl4rzDIHhLuzZX8KWql5x7Zi7SveZqOoU';
 
-    <script type="text/javascript">
-        // Client ID and API key from the Developer Console
-        var CLIENT_ID =
-            '987925713651-mdc18s622glenck8k8t3icinb5kprll9.apps.googleusercontent.com';
-        var API_KEY = 'AIzaSyDl4rzDIHhLuzZX8KWql5x7Zi7SveZqOoU';
+            // Array of API discovery doc URLs for APIs used by the quickstart
+            var DISCOVERY_DOCS = [
+                'https://docs.googleapis.com/$discovery/rest?version=v1',
+            ];
 
-        // Array of API discovery doc URLs for APIs used by the quickstart
-        var DISCOVERY_DOCS = [
-            'https://docs.googleapis.com/$discovery/rest?version=v1',
-        ];
+            // Authorization scopes required by the API; multiple scopes can be
+            // included, separated by spaces.
+            var SCOPES = 'https://www.googleapis.com/auth/documents.readonly';
 
-        // Authorization scopes required by the API; multiple scopes can be
-        // included, separated by spaces.
-        var SCOPES = 'https://www.googleapis.com/auth/documents.readonly';
+            var authorizeButton = document.getElementById('authorize_button');
+            var signoutButton = document.getElementById('signout_button');
 
-        var authorizeButton = document.getElementById('authorize_button');
-        var signoutButton = document.getElementById('signout_button');
-
-        /**
-         *  On load, called to load the auth2 library and API client library.
-         */
-        function handleClientLoad() {
-            gapi.load('client:auth2', initClient);
-        }
-
-        /**
-         *  Initializes the API client library and sets up sign-in state
-         *  listeners.
-         */
-        function initClient() {
-            try {
-                gapi.client
-                    .init({
-                        apiKey: API_KEY,
-                        clientId: CLIENT_ID,
-                        discoveryDocs: DISCOVERY_DOCS,
-                        scope: SCOPES,
-                    })
-                    .then(function() {
-                        // Listen for sign-in state changes.
-                        gapi.auth2
-                            .getAuthInstance()
-                            .isSignedIn.listen(updateSigninStatus);
-
-                        // Handle the initial sign-in state.
-                        updateSigninStatus(
-                            gapi.auth2.getAuthInstance().isSignedIn.get()
-                        );
-                        authorizeButton.onclick = handleAuthClick;
-                        // signoutButton.onclick = handleSignoutClick;
-                    });
-            } catch (error) {
-                alert('Opse :( ' + error);
+            /**
+             *  On load, called to load the auth2 library and API client library.
+             */
+            function handleClientLoad() {
+                gapi.load('client:auth2', initClient);
             }
-        }
 
-        /**
-         *  Called when the signed in status changes, to update the UI
-         *  appropriately. After a sign-in, the API is called.
-         */
-        function updateSigninStatus(isSignedIn) {
-            if (isSignedIn) {
-                authorizeButton.style.display = 'none';
-                // signoutButton.style.display = 'block';
-                printDocTitle();
-            } else {
-                authorizeButton.style.display = 'block';
-                // signoutButton.style.display = 'none';
-            }
-        }
+            /**
+             *  Initializes the API client library and sets up sign-in state
+             *  listeners.
+             */
+            function initClient() {
+                try {
+                    gapi.client
+                        .init({
+                            apiKey: API_KEY,
+                            clientId: CLIENT_ID,
+                            discoveryDocs: DISCOVERY_DOCS,
+                            scope: SCOPES,
+                        })
+                        .then(function () {
+                            // Listen for sign-in state changes.
+                            gapi.auth2
+                                .getAuthInstance()
+                                .isSignedIn.listen(updateSigninStatus);
 
-        /**
-         *  Sign in the user upon button click.
-         */
-        function handleAuthClick(event) {
-            gapi.auth2.getAuthInstance().signIn();
-        }
-
-        /**
-         *  Sign out the user upon button click.
-         */
-        function handleSignoutClick(event) {
-            gapi.auth2.getAuthInstance().signOut();
-        }
-
-        /**
-         * Append a pre element to the body containing the given message
-         * as its text node. Used to display the results of the API call.
-         *
-         * @param {string} message Text to be placed in pre element.
-         */
-        function appendMessage(message) {
-            document.getElementById('content').innerText = message;
-        }
-
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (
-                        cookie.substring(0, name.length + 1) ===
-                        name + '='
-                    ) {
-                        cookieValue = decodeURIComponent(
-                            cookie.substring(name.length + 1)
-                        );
-                        break;
-                    }
+                            // Handle the initial sign-in state.
+                            updateSigninStatus(
+                                gapi.auth2.getAuthInstance().isSignedIn.get()
+                            );
+                            authorizeButton.onclick = handleAuthClick;
+                            // signoutButton.onclick = handleSignoutClick;
+                        });
+                } catch (error) {
+                    alert('Opse :( ' + error);
                 }
             }
-            return cookieValue;
-        }
 
-        function readParagraphElement(element) {
-            /* Returns the text in the given ParagraphElement.
+            /**
+             *  Called when the signed in status changes, to update the UI
+             *  appropriately. After a sign-in, the API is called.
+             */
+            function updateSigninStatus(isSignedIn) {
+                if (isSignedIn) {
+                    authorizeButton.style.display = 'none';
+                    // signoutButton.style.display = 'block';
+                    printDocTitle();
+                } else {
+                    authorizeButton.style.display = 'block';
+                    // signoutButton.style.display = 'none';
+                }
+            }
+
+            /**
+             *  Sign in the user upon button click.
+             */
+            function handleAuthClick(event) {
+                gapi.auth2.getAuthInstance().signIn();
+            }
+
+            /**
+             *  Sign out the user upon button click.
+             */
+            function handleSignoutClick(event) {
+                gapi.auth2.getAuthInstance().signOut();
+            }
+
+            /**
+             * Append a pre element to the body containing the given message
+             * as its text node. Used to display the results of the API call.
+             *
+             * @param {string} message Text to be placed in pre element.
+             */
+            function appendMessage(message) {
+                document.getElementById('content').innerText = message;
+            }
+
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (
+                            cookie.substring(0, name.length + 1) ===
+                            name + '='
+                        ) {
+                            cookieValue = decodeURIComponent(
+                                cookie.substring(name.length + 1)
+                            );
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            function readParagraphElement(element) {
+                /* Returns the text in the given ParagraphElement.
                 Args:
                     element: a ParagraphElement from a Google Doc.
             */
-            // const textRun = element ? .textRun;
-            if (element && element.textRun) {
-                return element.textRun.content;
-            } else {
-                return '';
-            }
-        }
-
-        function fetchIndex(elements) {
-            /* same as readStructuralElements but specific for this book dicument's index table */
-            return elements.map((value, index) =>
-                value && value.paragraph && value.paragraph.elements ?
-                {
-                    title: readParagraphElement(
-                        value.paragraph.elements[0]
-                    ),
-                    pageNo: readParagraphElement(
-                        value.paragraph.elements[2]
-                    ),
-                } :
-                null
-            );
-        }
-
-        function readStrucuturalElements(elements) {
-            /* Recurses through a list of Structural Elements to read a document's text where text may be
-                in nested elements.
-                Args:
-                    elements: a list of Structural Elements.
-            */
-            let text = '';
-            elements.forEach((value) => {
-                if (value && value.paragraph && value.paragraph.elements) {
-                    value.paragraph.elements.forEach((elem) => {
-                        text += readParagraphElement(elem);
-                    });
-                } else if ('table' in value) {
-                    // The text in table cells are in nested Structural Elements and tables may be
-                    // nested.
-                    table = value.table;
-                    table.tableRows.forEach((row) => {
-                        cells = row.tableCells;
-                        cells.forEach(
-                            (cell) =>
-                            (text += readStrucuturalElements(
-                                cell.content
-                            ))
-                        );
-                    });
-                } else if ('tableOfContents' in value) {
-                    // The text in the TOC is also in a Structural Element.
-                    toc = value.tableOfContents;
-                    text += readStrucuturalElements(toc.content);
+                // const textRun = element ? .textRun;
+                if (element && element.textRun) {
+                    return element.textRun.content;
+                } else {
+                    return '';
                 }
-            });
-            return text;
-        }
+            }
 
-        function modifiedReadStrucuturalElements(elements) {
-            /* Recurses through a list of Structural Elements to read a document's text where text may be
+            function fetchIndex(elements) {
+                /* same as readStructuralElements but specific for this book dicument's index table */
+                return elements.map((value, index) =>
+                    value && value.paragraph && value.paragraph.elements
+                        ? {
+                              title: readParagraphElement(
+                                  value.paragraph.elements[0]
+                              ),
+                              pageNo: readParagraphElement(
+                                  value.paragraph.elements[2]
+                              ),
+                          }
+                        : null
+                );
+            }
+
+            function readStrucuturalElements(elements) {
+                /* Recurses through a list of Structural Elements to read a document's text where text may be
                 in nested elements.
                 Args:
                     elements: a list of Structural Elements.
             */
-            let text = '',
-                indexArray = [],
-                poemsArray = [],
-                titlePage = {
-                    title: '',
-                    subHeadings: [],
-                },
-                startPoemsArray = false;
-            try {
+                let text = '';
                 elements.forEach((value) => {
-                    if (
-                        value &&
-                        value.paragraph &&
-                        value.paragraph.elements &&
-                        value.paragraph.paragraphStyle &&
-                        value.paragraph.paragraphStyle.namedStyleType
-                    ) {
-                        let readElArray = [];
+                    if (value && value.paragraph && value.paragraph.elements) {
                         value.paragraph.elements.forEach((elem) => {
-                            let readEl = readParagraphElement(elem);
-                            text += readEl;
-                            if (readEl !== '') {
-                                readElArray.push(readEl);
-                            }
-                            if (!startPoemsArray &&
-                                readEl.includes('Index')
-                            ) {
-                                startPoemsArray = true;
-                            }
+                            text += readParagraphElement(elem);
                         });
-                        if (startPoemsArray) {
-                            if (
-                                value.paragraph.paragraphStyle
-                                .namedStyleType === 'HEADING_4'
-                            ) {
-                                poemsArray.push({
-                                    titleArray: readElArray[0].replace(
-                                        '\n',
-                                        '"'
-                                    ),
-                                    poemLinesArray: [],
-                                });
-                            } else if (
-                                poemsArray.length !== 0 &&
-                                poemsArray[poemsArray.length - 1] &&
-                                poemsArray[poemsArray.length - 1]
-                                .poemLinesArray
-                            ) {
-                                if (readElArray[0] === '\n') {
-                                    poemsArray[
-                                        poemsArray.length - 1
-                                    ].poemLinesArray.push(readElArray[0]);
-                                } else {
-                                    poemsArray[
-                                        poemsArray.length - 1
-                                    ].poemLinesArray.push(
-                                        readElArray[0].replace('\n', '')
-                                    );
-                                }
-                            }
-                        } else {
-                            if (
-                                value.paragraph.paragraphStyle
-                                .namedStyleType === 'HEADING_1'
-                            ) {
-                                titlePage.title = readElArray[0].replace(
-                                    '\n',
-                                    ''
-                                );
-                            } else if (
-                                titlePage.title !== '' &&
-                                readElArray[0] !== '\n'
-                            ) {
-                                titlePage.subHeadings.push(
-                                    readElArray[0].replace('\n', '')
-                                );
-                            }
-                        }
                     } else if ('table' in value) {
                         // The text in table cells are in nested Structural Elements and tables may be
                         // nested.
@@ -284,119 +177,226 @@
                             cells = row.tableCells;
                             cells.forEach(
                                 (cell) =>
-                                (text += readStrucuturalElements(
-                                    cell.content
-                                ))
+                                    (text += readStrucuturalElements(
+                                        cell.content
+                                    ))
                             );
                         });
                     } else if ('tableOfContents' in value) {
                         // The text in the TOC is also in a Structural Element.
                         toc = value.tableOfContents;
                         text += readStrucuturalElements(toc.content);
-                        indexArray = fetchIndex(
-                            value.tableOfContents.content
-                        );
                     }
                 });
-                if (
-                    poemsArray !== [] &&
-                    poemsArray[poemsArray.length - 1].poemLinesArray
-                    .length > 3
-                ) {
-                    poemsArray[poemsArray.length - 1].poemLinesArray.splice(
-                        poemsArray[poemsArray.length - 1].poemLinesArray
-                        .length - 3
-                    );
-                }
-                return {
-                    status: 0,
-                    message: 'Worked fine',
-                    payload: {
-                        titlePage,
-                        indexArray,
-                        poemsArray: poemsArray.slice(2),
-                    },
-                };
-            } catch (error) {
-                return {
-                    status: 1,
-                    message: error,
-                    payload: null,
-                };
+                return text;
             }
-        }
 
-        /**
-         * Prints the title of a sample doc:
-         * https://docs.google.com/document/d/195j9eDD3ccgjQRttHhJPymLJUCOUjs-jmwTrekvdjFE/edit
-         */
-        function printDocTitle() {
-            gapi.client.docs.documents
-                .get({
-                    documentId: '1RmUrERAxkHTcJA8OTovuXoeGSOWRzWVc5QWZar3kaB4',
-                    suggestionsViewMode: 'PREVIEW_SUGGESTIONS_ACCEPTED',
-                    prettyPrint: true,
-                    alt: 'json',
-                })
-                .then(
-                    function(response) {
-                        var doc = response.result;
-                        const output = modifiedReadStrucuturalElements(
-                            doc.body.content
-                        );
-                        var title = doc.title;
-                        // console.log('doc', {
-                        //     titlePage: output.payload.titlePage,
-                        //     indexArray: output.payload.indexArray,
-                        //     poemsArray: output.payload.poemsArray,
-                        // });
-                        const xmlhttp = new XMLHttpRequest();
-                        xmlhttp.onreadystatechange = function() {
-                            if (
-                                (xmlhttp.readyState == 4) &
-                                (xmlhttp.status == 200)
-                            ) {
-                                const response = JSON.parse(
-                                    xmlhttp.responseText
-                                );
-                                appendMessage(
-                                    'Document "' +
-                                    title +
-                                    '" successfully found' +
-                                    (output.status === 0) ?
-                                    'structured... ' +
-                                    (response.status === 0) ?
-                                    'and updated' :
-                                    'but failed to update.' :
-                                    'but failed to structure.'
-                                );
-                            }
-                        };
-                        xmlhttp.open('POST', "{% url 'update' %}", true);
-                        xmlhttp.setRequestHeader(
-                            'X-CSRFToken',
-                            getCookie('csrftoken')
-                        );
-                        xmlhttp.setRequestHeader(
-                            'Content-Type',
-                            'application/json;charset=utf-8'
-                        );
-                        let data = {
-                            inputJson: output.payload,
-                        };
-                        xmlhttp.send(JSON.stringify(data));
-                        gapi.auth2.getAuthInstance().signOut();
+            function modifiedReadStrucuturalElements(elements) {
+                /* Recurses through a list of Structural Elements to read a document's text where text may be
+                in nested elements.
+                Args:
+                    elements: a list of Structural Elements.
+            */
+                let text = '',
+                    indexArray = [],
+                    poemsArray = [],
+                    titlePage = {
+                        title: '',
+                        subHeadings: [],
                     },
-                    function(response) {
-                        appendPre(
-                            'Error: ' + response.result.error.message
+                    startPoemsArray = false;
+                try {
+                    elements.forEach((value) => {
+                        if (
+                            value &&
+                            value.paragraph &&
+                            value.paragraph.elements &&
+                            value.paragraph.paragraphStyle &&
+                            value.paragraph.paragraphStyle.namedStyleType
+                        ) {
+                            let readElArray = [];
+                            value.paragraph.elements.forEach((elem) => {
+                                let readEl = readParagraphElement(elem);
+                                text += readEl;
+                                if (readEl !== '') {
+                                    readElArray.push(readEl);
+                                }
+                                if (
+                                    !startPoemsArray &&
+                                    readEl.includes('Index')
+                                ) {
+                                    startPoemsArray = true;
+                                }
+                            });
+                            if (startPoemsArray) {
+                                if (
+                                    value.paragraph.paragraphStyle
+                                        .namedStyleType === 'HEADING_4'
+                                ) {
+                                    poemsArray.push({
+                                        title: readElArray[0].replace('\n', ''),
+                                        poemLinesArray: [],
+                                    });
+                                } else if (
+                                    poemsArray.length !== 0 &&
+                                    poemsArray[poemsArray.length - 1] &&
+                                    poemsArray[poemsArray.length - 1]
+                                        .poemLinesArray
+                                ) {
+                                    if (readElArray[0] === '\n') {
+                                        poemsArray[
+                                            poemsArray.length - 1
+                                        ].poemLinesArray.push(readElArray[0]);
+                                    } else {
+                                        poemsArray[
+                                            poemsArray.length - 1
+                                        ].poemLinesArray.push(
+                                            readElArray[0].replace('\n', '')
+                                        );
+                                    }
+                                }
+                            } else {
+                                if (
+                                    value.paragraph.paragraphStyle
+                                        .namedStyleType === 'HEADING_1'
+                                ) {
+                                    titlePage.title = readElArray[0];
+                                } else if (
+                                    titlePage.title !== '' &&
+                                    readElArray[0] !== '\n'
+                                ) {
+                                    titlePage.subHeadings.push(
+                                        readElArray[0].replace('\n', '')
+                                    );
+                                }
+                            }
+                        } else if ('table' in value) {
+                            // The text in table cells are in nested Structural Elements and tables may be
+                            // nested.
+                            table = value.table;
+                            table.tableRows.forEach((row) => {
+                                cells = row.tableCells;
+                                cells.forEach(
+                                    (cell) =>
+                                        (text += readStrucuturalElements(
+                                            cell.content
+                                        ))
+                                );
+                            });
+                        } else if ('tableOfContents' in value) {
+                            // The text in the TOC is also in a Structural Element.
+                            toc = value.tableOfContents;
+                            text += readStrucuturalElements(toc.content);
+                            indexArray = fetchIndex(
+                                value.tableOfContents.content
+                            );
+                        }
+                    });
+                    if (
+                        poemsArray !== [] &&
+                        poemsArray[poemsArray.length - 1].poemLinesArray
+                            .length > 3
+                    ) {
+                        poemsArray[poemsArray.length - 1].poemLinesArray.splice(
+                            poemsArray[poemsArray.length - 1].poemLinesArray
+                                .length - 3
                         );
-                        gapi.auth2.getAuthInstance().signOut();
                     }
-                );
-        }
-    </script>
-    <script async="" defer="" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js"></script>
-</body>
+                    return {
+                        status: 0,
+                        message: 'Worked fine',
+                        payload: {
+                            titlePage,
+                            indexArray,
+                            poemsArray: poemsArray.slice(2),
+                        },
+                    };
+                } catch (error) {
+                    return {
+                        status: 1,
+                        message: error,
+                        payload: null,
+                    };
+                }
+            }
 
+            /**
+             * Prints the title of a sample doc:
+             * https://docs.google.com/document/d/195j9eDD3ccgjQRttHhJPymLJUCOUjs-jmwTrekvdjFE/edit
+             */
+            function printDocTitle() {
+                gapi.client.docs.documents
+                    .get({
+                        documentId:
+                            '1RmUrERAxkHTcJA8OTovuXoeGSOWRzWVc5QWZar3kaB4',
+                        suggestionsViewMode: 'PREVIEW_SUGGESTIONS_ACCEPTED',
+                        prettyPrint: true,
+                        alt: 'json',
+                    })
+                    .then(
+                        function (response) {
+                            var doc = response.result;
+                            const output = modifiedReadStrucuturalElements(
+                                doc.body.content
+                            );
+                            var title = doc.title;
+                            console.log('doc', {
+                                titlePage: output.payload.titlePage,
+                                indexArray: output.payload.indexArray,
+                                poemsArray: output.payload.poemsArray,
+                            });
+                            const xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function () {
+                                if (
+                                    (xmlhttp.readyState == 4) &
+                                    (xmlhttp.status == 200)
+                                ) {
+                                    const response = JSON.parse(
+                                        xmlhttp.responseText
+                                    );
+                                    appendMessage(
+                                        'Document "' +
+                                            title +
+                                            '" 1 -> successfully found... ' +
+                                            (output.status === 0
+                                                ? '2 -> structured... ' +
+                                                  (response.status === 0
+                                                      ? '3 -> and updated'
+                                                      : 'but failed to update.')
+                                                : 'but failed to structure.')
+                                    );
+                                }
+                            };
+                            xmlhttp.open('POST', "{% url 'update' %}", true);
+                            xmlhttp.setRequestHeader(
+                                'X-CSRFToken',
+                                getCookie('csrftoken')
+                            );
+                            xmlhttp.setRequestHeader(
+                                'Content-Type',
+                                'application/json;charset=utf-8'
+                            );
+                            let data = {
+                                inputJson: output.payload,
+                            };
+                            xmlhttp.send(JSON.stringify(data));
+                            gapi.auth2.getAuthInstance().signOut();
+                        },
+                        function (response) {
+                            appendPre(
+                                'Error: ' + response.result.error.message
+                            );
+                            gapi.auth2.getAuthInstance().signOut();
+                        }
+                    );
+            }
+        </script>
+        <script
+            async=""
+            defer=""
+            onload="this.onload=function(){};handleClientLoad()"
+            onreadystatechange="if (this.readyState === 'complete') this.onload()"
+            src="https://apis.google.com/js/api.js"
+        ></script>
+    </body>
 </html>
