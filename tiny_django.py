@@ -28,6 +28,7 @@ DEBUG = False
 SECRET_KEY = '41+_$!j&y@zr#9cxdp6m9o3j&6dnk__bq*deii)5w6w744e7a#'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '*']
+# ALLOWED_HOSTS = ['poetry.hivarun.com', 'www.poetry.hivarun.com']
 
 settings.configure(
     DEBUG=DEBUG,
@@ -115,6 +116,7 @@ def home(request):
             list_zipped = list(zipped)
             return render(request, 'home.html', {'status': 0, 'message': 'Worked fine.', 'payload': {'title': output_json['titlePage']['title'], 'sub_heading': output_json['titlePage']['subHeadings'][0], 'poems_list': list_zipped[:3]}})
         except Exception as ex:
+            # return render(request, 'failure.html', {'message': ex})
             return render(request, 'failure.html')
 
 
@@ -130,6 +132,7 @@ def index(request):
             back_url = request.GET.get('back', 'home')
             return render(request, 'poems_index.html', {'status': 0, 'message': 'Worked fine.', 'payload': output_json['indexArray'], 'back_url': back_url})
         except Exception as ex:
+            # return render(request, 'failure.html', {'message': ex})
             return render(request, 'failure.html')
 
 
@@ -145,6 +148,7 @@ def all_poems(request):
             back_url = request.GET.get('back', 'home')
             return render(request, 'all_poems.html', {'status': 0, 'message': 'Worked fine.', 'payload': output_json['poemsArray'], 'back_url': back_url})
         except Exception as ex:
+            # return render(request, 'failure.html', {'message': ex})
             return render(request, 'failure.html')
 
 
@@ -161,7 +165,8 @@ def single_poem(request, poem_index):
             random_button = request.GET.get('random', 0)
             return render(request, 'single_poem.html', {'status': 0, 'message': 'Worked fine.', 'payload': output_json['poemsArray'][int(poem_index) - 1], 'back_url': back_url, 'random_button': int(random_button)})
         except Exception as ex:
-            return render(request, 'failure.html')
+            return render(request, 'failure.html', {'message': ex})
+            # return render(request, 'failure.html')
 
 
 def poem_random(request):
@@ -175,7 +180,8 @@ def poem_random(request):
                 raise Exception('Empty file.')
             return redirect('/'+str(random.randint(0, len(output_json['poemsArray']) - 1))+'?back=home&random=1')
         except Exception as ex:
-            return render(request, 'failure.html')
+            return render(request, 'failure.html', {'message': ex})
+            # return render(request, 'failure.html')
 
 
 urlpatterns = (

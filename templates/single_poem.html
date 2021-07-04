@@ -2,7 +2,20 @@
 Raian Maruvin's Selected Poems {% endblock title %}
 <!-- Meta Tags -->
 <!-- prettier-ignore -->
-{% block metatags %}{% include 'meta_tags.html' with title=payload.title description=payload.poemLinesArray.0|add:' '|add:payload.poemLinesArray.1|add:' '|add:payload.poemLinesArray.2|add:' '|add:payload.poemLinesArray.3|add:' '|add:payload.poemLinesArray.4 %}{% endblock metatags %}
+{% block metatags %}
+{% if payload.poemLinesArray|length > 3 %}
+{% include 'meta_tags.html' with title=payload.title description=payload.poemLinesArray.0|add:' '|add:payload.poemLinesArray.1|add:' '|add:payload.poemLinesArray.2|add:' '|add:payload.poemLinesArray.3 %}
+{% elif payload.poemLinesArray|length > 2 %}
+{% include 'meta_tags.html' with title=payload.title description=payload.poemLinesArray.0|add:' '|add:payload.poemLinesArray.1|add:' '|add:payload.poemLinesArray.2 %}
+{% elif payload.poemLinesArray|length > 1 %}
+{% include 'meta_tags.html' with title=payload.title description=payload.poemLinesArray.0|add:' '|add:payload.poemLinesArray.1 %}
+{% elif payload.poemLinesArray|length > 0 %}
+{% include 'meta_tags.html' with title=payload.title description=payload.poemLinesArray.0 %}
+{% else %}
+{% include 'meta_tags.html' with title=payload.title description='' %}
+{% endif %}
+{% endblock metatags %}
+<!-- End of Meta Tags -->
 <!-- End of Meta Tags -->
 {% block styleContainer %}
 <style>
