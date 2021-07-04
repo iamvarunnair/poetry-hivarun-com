@@ -95,9 +95,8 @@ deactivate
 -   Store alreday opened poems through random and don't open them again
 -   Categories feature
 -   Poem view count feature
--   Other favourites features to features other poets
+-   Other favourites feature to feature other poets
 -   Advance search with suggestions
--   Add scroll to top button
 -   Store private keys in .env file
 -   Use the following for pixlatted background-image svg while scalling
     [option 1 stack overflow](https://stackoverflow.com/questions/11856161/using-svg-as-css3-background-image-with-scaling)

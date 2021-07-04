@@ -573,6 +573,23 @@
                 color: var(--color-secondary-a);
                 padding: calc(var(--unit-a) * 0.5) calc(var(--unit-a) * 1)
                     calc(var(--unit-a) * 0.2) calc(var(--unit-a) * 1);
+                border: calc(var(--unit-a) * 0.15) solid transparent;
+            }
+
+            .button-c {
+                color: var(--color-secondary-a);
+                padding: calc(var(--unit-a) * 0.5);
+                border: calc(var(--unit-a) * 0.15) solid
+                    var(--color-secondary-a);
+                transform: rotateZ(90deg);
+            }
+
+            .scroll-to-top {
+                display: none;
+                width: calc(var(--unit-a) * 2);
+                height: calc(var(--unit-a) * 2);
+                left: calc(100vw - (var(--unit-a) * 4));
+                bottom: calc(var(--unit-a) * 2);
             }
 
             .fixed-border-top {
@@ -604,7 +621,8 @@
             }
 
             .svg-search,
-            .svg-back {
+            .svg-back,
+            .svg-scroll-top {
                 height: calc(var(--unit-a) * 0.75);
                 width: calc(var(--unit-a) * 1);
             }
@@ -619,6 +637,11 @@
             .svg-back > g > path {
                 stroke: var(--color-secondary-a);
                 stroke-width: calc(var(--unit-a) * 0.3);
+            }
+
+            .svg-scroll-top > g > path {
+                stroke: var(--color-secondary-a);
+                stroke-width: calc(var(--unit-a) * 0.4);
             }
 
             .svg-css-background-wrapper {
@@ -663,12 +686,22 @@
                     stroke: var(--color-black-a);
                 }
                 .button-b:hover {
+                    border: calc(var(--unit-a) * 0.15) solid var(--color-gray-a);
                     color: var(--color-black-a);
                     background-color: var(--background-color-o);
                     font-weight: 900;
                 }
                 .button-b:hover > .svg-back > g > line,
                 .button-b:hover > .svg-back > g > path {
+                    stroke: var(--color-black-a);
+                }
+                .button-c:hover {
+                    border: calc(var(--unit-a) * 0.15) solid
+                        var(--color-black-a);
+                    color: var(--color-black-a);
+                    background-color: var(--background-color-o);
+                }
+                .button-c:hover > .svg-scroll-top > g > path {
                     stroke: var(--color-black-a);
                 }
             }
@@ -679,20 +712,33 @@
                 color: var(--color-white-a);
                 background-color: var(--background-color-n);
                 font-weight: 900;
+                /*transition  may not always appear effective */
+                /* transition: all 0.2s ease-out; */
             }
-
             .button-a:active > .svg-search > g > g,
             .button-a:active > .svg-search > g > line {
                 stroke: var(--color-white-a);
             }
             .button-b:active {
+                border: calc(var(--unit-a) * 0.15) solid var(--color-gray-a);
                 color: var(--color-white-a);
                 background-color: var(--background-color-n);
                 font-weight: 900;
+                /* transition may not always appear effective */
+                /* transition: all 0.2s ease-out; */
             }
-
             .button-b:active > .svg-back > g > line,
             .button-b:active > .svg-back > g > path {
+                stroke: var(--color-white-a);
+            }
+            .button-c:active {
+                border: calc(var(--unit-a) * 0.15) solid var(--color-black-a);
+                color: var(--color-white-a);
+                background-color: var(--background-color-n);
+                /*transition  may not always appear effective */
+                /* transition: all 0.2s ease-out; */
+            }
+            .button-c:active > .svg-scroll-top > g > path {
                 stroke: var(--color-white-a);
             }
             /* End of avtive state css */
@@ -753,6 +799,7 @@
         ></div>
         <div
             class="
+                scroll-body
                 width100
                 height100
                 overflow-hidden overflow-y-auto
@@ -771,6 +818,7 @@
             {% block bodyContainer %} {% endblock %} {% block scriptContainer %}
             {% endblock %}
         </div>
+        {% block scrollbutton %} {% endblock scrollbutton %}
         <script>
             var rtime;
             var timeout = false;

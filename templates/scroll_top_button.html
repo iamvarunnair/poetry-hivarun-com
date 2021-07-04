@@ -1,0 +1,80 @@
+<button
+    class="
+        scroll-to-top
+        position-fixed
+        z-index1
+        background-color-a
+        border-radius-b
+        button-c
+        no-select
+    "
+    onclick="topFunction()"
+>
+    <!-- <svg
+                class="svg-scroll-top"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 69.657 36.828"
+            >
+                <path
+                    d="M0,32,32,0,64,32"
+                    transform="translate(2.828 2)"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </svg> -->
+    <svg
+        class="svg-scroll-top"
+        xmlns="http://www.w3.org/2000/svg"
+        width="45.8"
+        height="38.3"
+        viewBox="0 0 45.8 38.3"
+    >
+        <g transform="translate(-185.2 -725)">
+            <rect
+                width="45.8"
+                height="38.3"
+                rx="19.15"
+                transform="translate(185.2 725)"
+                fill="none"
+            />
+            <path
+                d="M13143.351-90.692l-16.1,16.1,16.1,16.1"
+                transform="translate(-12939.001 818.708)"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </g>
+    </svg>
+</button>
+<script>
+    const scrollTopButtonDOM = document.querySelector('.scroll-to-top');
+    const scrollBodyDOM = document.querySelector('.scroll-body');
+    // When the user scrolls down 20px from the top of the document, show the button
+    scrollBodyDOM.onscroll = function () {
+        if (scrollBodyDOM.scrollTop) {
+            scrollFunction();
+        }
+    };
+
+    function scrollFunction() {
+        if (
+            document.body.scrollTop > 400 ||
+            document.documentElement.scrollTop > 400 ||
+            scrollBodyDOM.scrollTop > 400
+        ) {
+            scrollTopButtonDOM.style.display = 'block';
+        } else {
+            scrollTopButtonDOM.style.display = 'none';
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        scrollBodyDOM.scrollTop = 0;
+        scrollTopButtonDOM.style.display = 'none';
+    }
+</script>
