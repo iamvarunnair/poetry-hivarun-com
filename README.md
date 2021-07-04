@@ -1,3 +1,11 @@
+![Screenshot](screenshot.png)
+
+#
+
+<p align="center">
+  <img src="./screenshot.png" width="100%" height="400" style="object-fit: cover;" title="Site preview" alt="site preview">
+</p>
+#
 # [poetry-hivarun-com](poetry.hivarun.com)
 
 ###### _A Poetry Collection._
@@ -95,7 +103,6 @@ deactivate
 -   Poem view count feature
 -   Other favourites features to features other poets
 -   Advance search with suggestions
--   Add SEO optimised meta tags
 -   Add scroll to top button
 -   Store private keys in .env file
 -   Use the following for pixlatted background-image svg while scalling
