@@ -1,0 +1,28 @@
+<!-- Primary Meta Tags -->
+<meta name="title" content="{{ title|default:'' }}" />
+<meta name="description" content="{{ description|default:''}}" />
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta
+    property="og:url"
+    content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ request.get_full_path }}"
+/>
+<meta property="og:title" content="{{ title|default:''}}" />
+<meta property="og:description" content="{{ description|default:''}}" />
+<meta
+    property="og:image"
+    content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}/screenshot.png"
+/>
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta
+    property="twitter:url"
+    content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ request.get_full_path }}"
+/>
+<meta property="twitter:title" content="{{ title|default:''}}" />
+<meta property="twitter:description" content="{{ description|default:''}}" />
+<meta
+    property="twitter:image"
+    content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}/screenshot.png"
+/>

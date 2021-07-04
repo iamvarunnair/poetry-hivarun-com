@@ -1,4 +1,9 @@
-{% extends 'base.html' %}{% block styleContainer %}
+{% extends 'base.html' %}
+<!-- Meta Tags -->
+<!-- prettier-ignore -->
+{% block metatags %}{% include 'meta_tags.html' with title='' description='' %}{% endblock metatags %}
+<!-- End of Meta Tags -->
+{% block styleContainer %}
 <style>
     .home-left-right-section-width {
         width: 100%;

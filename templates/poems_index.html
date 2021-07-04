@@ -1,5 +1,10 @@
 {% extends 'base.html' %} {% block title %} Index of Raian Maruvin's Selected
-Poems {% endblock title %} {% block bodyContainer %}
+Poems {% endblock title %}
+<!-- Meta Tags -->
+<!-- prettier-ignore -->
+{% block metatags %}{% include 'meta_tags.html' with title='Index of Raian Maruvin\'s Selected Poems' description='' %}{% endblock metatags %}
+<!-- End of Meta Tags -->
+{% block bodyContainer %}
 <div
     class="
         page-wrapper
@@ -12,7 +17,7 @@ Poems {% endblock title %} {% block bodyContainer %}
         <a class="no-select" href="{% url back_url %}">
             <button
                 class="
-                    margin-b
+                    margin-d
                     font-size-3 font-chilanka
                     background-color-a
                     border-radius-b

@@ -8,6 +8,9 @@
         <title>
             {% block title %} Raian Maruvin's Selected Poems {% endblock title %}
         </title>
+        <!-- Meta Tags -->
+        {% block metatags %}{% endblock metatags %}
+        <!-- End of Meta Tags -->
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
             href="https://fonts.googleapis.com/css2?family=Caveat&family=Chilanka&family=Montserrat:ital@1&display=swap"
@@ -112,6 +115,7 @@
                 --background-color-l: var(--color-tertiary-a-op-20);
                 --background-color-m: var(--color-secondary-a);
                 --background-color-n: var(--color-black-a);
+                --background-color-o: var(--color-gray-a);
                 /*  */
                 --unit-a: calc(1rem + 0.5vw);
                 /* To deal with text overflow logic */
@@ -292,6 +296,10 @@
 
             .margin-c {
                 margin-bottom: calc(var(--unit-a) * 0.3);
+            }
+
+            .margin-d {
+                margin-left: calc(var(--unit-a) * 1);
             }
 
             .font-size-1 {
@@ -561,29 +569,10 @@
                     var(--color-secondary-a);
             }
 
-            .button-a:active {
-                border: calc(var(--unit-a) * 0.15) solid var(--color-black-a);
-                color: var(--color-black-a);
-            }
-
-            .button-a:active > .svg-search > g > g,
-            .button-a:active > .svg-search > g > line {
-                stroke: var(--color-black-a);
-            }
-
             .button-b {
                 color: var(--color-secondary-a);
                 padding: calc(var(--unit-a) * 0.5) calc(var(--unit-a) * 1)
                     calc(var(--unit-a) * 0.2) calc(var(--unit-a) * 1);
-            }
-
-            .button-b:active {
-                color: var(--color-black-a);
-            }
-
-            .button-b:active > .svg-back > g > line,
-            .button-b:active > .svg-back > g > path {
-                stroke: var(--color-black-a);
             }
 
             .fixed-border-top {
@@ -617,6 +606,7 @@
             .svg-search,
             .svg-back {
                 height: calc(var(--unit-a) * 0.75);
+                width: calc(var(--unit-a) * 1);
             }
 
             .svg-search > g > g,
@@ -665,6 +655,8 @@
                     border: calc(var(--unit-a) * 0.15) solid
                         var(--color-black-a);
                     color: var(--color-black-a);
+                    background-color: var(--background-color-o);
+                    font-weight: 900;
                 }
                 .button-a:hover > .svg-search > g > g,
                 .button-a:hover > .svg-search > g > line {
@@ -672,12 +664,39 @@
                 }
                 .button-b:hover {
                     color: var(--color-black-a);
+                    background-color: var(--background-color-o);
+                    font-weight: 900;
                 }
                 .button-b:hover > .svg-back > g > line,
                 .button-b:hover > .svg-back > g > path {
                     stroke: var(--color-black-a);
                 }
             }
+
+            /* Active state css written after hover state so hover state css does not override active state css */
+            .button-a:active {
+                border: calc(var(--unit-a) * 0.15) solid var(--color-black-a);
+                color: var(--color-white-a);
+                background-color: var(--background-color-n);
+                font-weight: 900;
+            }
+
+            .button-a:active > .svg-search > g > g,
+            .button-a:active > .svg-search > g > line {
+                stroke: var(--color-white-a);
+            }
+            .button-b:active {
+                color: var(--color-white-a);
+                background-color: var(--background-color-n);
+                font-weight: 900;
+            }
+
+            .button-b:active > .svg-back > g > line,
+            .button-b:active > .svg-back > g > path {
+                stroke: var(--color-white-a);
+            }
+            /* End of avtive state css */
+
             /* media queries To change layout from mobile: top-bottom to web: left-right */
 
             @media screen and (min-width: 600px) {

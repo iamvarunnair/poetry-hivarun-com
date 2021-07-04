@@ -1,5 +1,10 @@
 {% extends 'base.html' %} {% block title %} Poem {{request.path|slice:"1:"}} of
-Raian Maruvin's Selected Poems {% endblock title %} {% block styleContainer %}
+Raian Maruvin's Selected Poems {% endblock title %}
+<!-- Meta Tags -->
+<!-- prettier-ignore -->
+{% block metatags %}{% include 'meta_tags.html' with title=payload.title description=payload.poemLinesArray.0|add:' '|add:payload.poemLinesArray.1|add:' '|add:payload.poemLinesArray.2|add:' '|add:payload.poemLinesArray.3|add:' '|add:payload.poemLinesArray.4 %}{% endblock metatags %}
+<!-- End of Meta Tags -->
+{% block styleContainer %}
 <style>
     .random-button {
         margin: calc(var(--unit-a) * 0.4) calc(var(--unit-a) * 1);
@@ -23,7 +28,7 @@ Raian Maruvin's Selected Poems {% endblock title %} {% block styleContainer %}
         <a class="no-select" href="{% url back_url %}">
             <button
                 class="
-                    margin-b
+                    margin-d
                     font-size-3 font-chilanka
                     background-color-a
                     border-radius-b
@@ -69,6 +74,7 @@ Raian Maruvin's Selected Poems {% endblock title %} {% block styleContainer %}
             <button
                 class="
                     random-button
+                    margin-d
                     font-size-3 font-chilanka
                     background-color-a
                     border-radius-b
