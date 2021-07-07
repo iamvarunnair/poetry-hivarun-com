@@ -682,7 +682,8 @@
             /* @media (hover: hover) and (pointer: fine) To remove sticky hover state in device with touch input like crome on android */
 
             @media (hover: hover) and (pointer: fine) {
-                .button-a:hover {
+                .button-a:hover,
+                .button-a:focus {
                     border: calc(var(--unit-a) * 0.15) solid
                         var(--color-black-a);
                     color: var(--color-black-a);
@@ -690,25 +691,32 @@
                     font-weight: 900;
                 }
                 .button-a:hover > .svg-search > g > g,
-                .button-a:hover > .svg-search > g > line {
+                .button-a:hover > .svg-search > g > line,
+                .button-a:focus > .svg-search > g > g,
+                .button-a:focus > .svg-search > g > line {
                     stroke: var(--color-black-a);
                 }
-                .button-b:hover {
+                .button-b:hover,
+                .button-b:focus {
                     border: calc(var(--unit-a) * 0.15) solid var(--color-gray-a);
                     color: var(--color-black-a);
                     background-color: var(--background-color-o);
                     font-weight: 900;
                 }
                 .button-b:hover > .svg-back > g > line,
-                .button-b:hover > .svg-back > g > path {
+                .button-b:hover > .svg-back > g > path,
+                .button-b:focus > .svg-back > g > line,
+                .button-b:focus > .svg-back > g > path {
                     stroke: var(--color-black-a);
                 }
+                .button-c:hover,
                 .button-c:hover {
                     border: calc(var(--unit-a) * 0.15) solid
                         var(--color-black-a);
                     color: var(--color-black-a);
                     background-color: var(--background-color-o);
                 }
+                .button-c:hover,
                 .button-c:hover > .svg-scroll-top > g > path {
                     stroke: var(--color-black-a);
                 }
@@ -767,6 +775,11 @@
             @media screen and (min-width: 1000px) {
                 .svg-size {
                     background-size: 100%;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    transition: none;
                 }
             }
         </style>

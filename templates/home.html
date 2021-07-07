@@ -150,7 +150,8 @@
     }
     /* @media (hover: hover) and (pointer: fine) To remove sticky hover state in device with touch input like crome on android */
     @media (hover: hover) and (pointer: fine) {
-        .card:hover {
+        .card:hover,
+        .card:focus {
             transform: translate(-50%, -50%) scale(1.1);
         }
     }

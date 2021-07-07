@@ -6,37 +6,56 @@ Poems {% endblock title %}
 <!-- End of Meta Tags -->
 {% block styleContainer %}
 <style>
-    /* @media (hover: hover) and (pointer: fine) To remove sticky hover state in device with touch input like crome on android */
-
     .card-body-text {
-        transition: 0.2s ease all 0.2s;
+        /* logic: 100% - padding -> max-width: calc(100% - var(--unit-b) * 1); */
+        max-width: calc(100% - var(--unit-b) * 1);
     }
-    .card-body-text::after {
-        content: '';
-        position: absolute;
-        top: 65%;
-        height: calc(var(--unit-a) * 0.1);
-        width: 0%;
-        left: 3%;
-        background-color: var(--text-color-a);
-        transition: 0.2s ease all 0.2s;
+    .card-body-text span {
+        background-image: linear-gradient(
+            var(--background-color-n),
+            var(--background-color-n)
+        );
+        background-repeat: no-repeat;
+        background-size: 0 calc(var(--unit-a) * 0.1);
+        background-position: 0 100%;
     }
-    @media (hover: hover) and (pointer: fine) {
-        .card-body-text:hover {
+    /*  */
+
+    /* @media (hover: hover) and (pointer: fine) To remove sticky hover state in device with touch input like crome on android */
+    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+        .card-body-text:hover,
+        a:focus .card-body-text {
             color: var(--text-color-a);
             font-weight: 900;
-            transition: 0.6s ease all;
         }
-        .card-body-text:hover::after {
-            width: 94%;
-            transition: 0.3s ease all;
+        .card-body-text:hover span,
+        a:focus .card-body-text span {
+            background-size: 100% calc(var(--unit-a) * 0.1);
+            transition: all 0.3s ease;
         }
     }
     /* Active state css written after hover state so hover state css does not override active state css */
-    .card-body-text:active {
+    .card-body-text:active,
+    .card-body-text:active span {
         font-weight: 900;
         color: var(--text-color-b);
         background-color: var(--background-color-n);
+    }
+    /* transitions on mobile screen affect tap which is same as :active thus added only in larger screens*/
+    @media screen and (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+        .card-body-text span {
+            transition: 0.2s ease all 0.2s;
+        }
+    }
+    /*
+    @media (prefers-reduced-motion: reduce){//transition: none;}
+    @media (prefers-reduced-motion: no-preference){// add transitions here}
+    on-screen movement can cause sickness and even seizures in some folk.
+    A setting in OS indicates the prefered reduced movement
+    detected by browsers, passed to site, sites detect preference
+    and use a prefers-reduced-motion media query to turn off your transitions
+    */
+    @media (prefers-reduced-motion: no-preference) {
     }
 </style>
 {% endblock %} {% block bodyContainer %}
@@ -113,7 +132,9 @@ Poems {% endblock title %}
                     text-color-d
                 "
             >
-                &nbsp;{{forloop.counter}}.&nbsp;&nbsp;&nbsp;&nbsp;{{entry.title}}
+                <span
+                    >&nbsp;{{forloop.counter}}.&nbsp;&nbsp;&nbsp;&nbsp;{{entry.title}}</span
+                >
             </p>
         </a>
         {%endfor %}
