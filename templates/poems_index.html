@@ -4,7 +4,42 @@ Poems {% endblock title %}
 <!-- prettier-ignore -->
 {% block metatags %}{% include 'meta_tags.html' with title='Index of Raian Maruvin\'s Selected Poems' description='' %}{% endblock metatags %}
 <!-- End of Meta Tags -->
-{% block bodyContainer %}
+{% block styleContainer %}
+<style>
+    /* @media (hover: hover) and (pointer: fine) To remove sticky hover state in device with touch input like crome on android */
+
+    .card-body-text {
+        transition: 0.2s ease all 0.2s;
+    }
+    .card-body-text::after {
+        content: '';
+        position: absolute;
+        top: 65%;
+        height: calc(var(--unit-a) * 0.1);
+        width: 0%;
+        left: 3%;
+        background-color: var(--text-color-a);
+        transition: 0.2s ease all 0.2s;
+    }
+    @media (hover: hover) and (pointer: fine) {
+        .card-body-text:hover {
+            color: var(--text-color-a);
+            font-weight: 900;
+            transition: 0.6s ease all;
+        }
+        .card-body-text:hover::after {
+            width: 94%;
+            transition: 0.3s ease all;
+        }
+    }
+    /* Active state css written after hover state so hover state css does not override active state css */
+    .card-body-text:active {
+        font-weight: 900;
+        color: var(--text-color-b);
+        background-color: var(--background-color-n);
+    }
+</style>
+{% endblock %} {% block bodyContainer %}
 <div
     class="
         page-wrapper
@@ -62,7 +97,7 @@ Poems {% endblock title %}
     <div class="title-wrapper width80">
         <p class="heading font-size-1 font-caveat text-color-a">Index.</p>
     </div>
-    <div class="text-wrapper padding5 back background-color-e">
+    <div class="text-wrapper padding-e background-color-e">
         {% for entry in payload %}
         <a
             class="no-select"
@@ -71,12 +106,14 @@ Poems {% endblock title %}
             <p
                 class="
                     card-body-text
+                    position-relative
+                    width-max-content
+                    padding-d
                     font-size-3 font-montserrat-italic
                     text-color-d
-                    margin-a
                 "
             >
-                {{forloop.counter}}.&nbsp&nbsp&nbsp&nbsp{{entry.title}}
+                &nbsp;{{forloop.counter}}.&nbsp;&nbsp;&nbsp;&nbsp;{{entry.title}}
             </p>
         </a>
         {%endfor %}

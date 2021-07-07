@@ -148,7 +148,18 @@
         width: calc(var(--unit-a) * 4.2);
         height: calc(var(--unit-a) * 4.4);
     }
-    /*  */
+    /* @media (hover: hover) and (pointer: fine) To remove sticky hover state in device with touch input like crome on android */
+    @media (hover: hover) and (pointer: fine) {
+        .card:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+    }
+
+    /* Active state css written after hover state so hover state css does not override active state css */
+    .card:active {
+        color: var(--text-color-a);
+        background-color: var(--background-color-n);
+    }
     /* To change layout from mobile: top-bottom to web: left-right */
 
     @media screen and (min-width: 600px) {

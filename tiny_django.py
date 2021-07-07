@@ -184,6 +184,10 @@ def poem_random(request):
             # return render(request, 'failure.html')
 
 
+def page_not_found(request):
+    return render(request, '404.html')
+
+
 urlpatterns = (
     re_path(r'^$', home, name='home'),
     re_path(r'^index$', index, name='index'),
@@ -192,6 +196,7 @@ urlpatterns = (
     re_path(r'^any', poem_random, name='random'),
     re_path(r'^google-auth$', google_auth, name='google_auth'),
     re_path(r'^update-from-doc$', update_json_file, name='update'),
+    re_path(r'^$', page_not_found, name='page_not_found'),
 )
 
 application = get_wsgi_application()

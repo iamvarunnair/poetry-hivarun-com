@@ -16,10 +16,21 @@ Selected Poems {% endblock title %}
         margin: calc(var(--unit-a) * 1) calc(var(--unit-a) * 2);
         padding: calc(var(--unit-a) * 1.8) calc(var(--unit-a) * 1.2);
     }
+    /* @media (hover: hover) and (pointer: fine) To remove sticky hover state in device with touch input like crome on android */
+    @media (hover: hover) and (pointer: fine) {
+        .all-poem-card:hover {
+            transform: scale(1.1);
+        }
+    }
 
+    /* Active state css written after hover state so hover state css does not override active state css */
+    .all-poem-card:active {
+        color: var(--text-color-a);
+        background-color: var(--background-color-n);
+    }
     @media screen and (min-width: 1000px) {
         .all-poem-card {
-            --max-lines: 10;
+            --max-lines: 9;
             margin: calc(var(--unit-a) * 2);
         }
     }
